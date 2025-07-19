@@ -1,0 +1,212 @@
+{% extends "base.html" %}
+{% block title %}Ficha Bestiário{% endblock  %}
+{% block content %}
+    {% include "header.html" %}
+    <main>
+        <section class="personagem">
+            <img src="https://i.pinimg.com/736x/3a/3b/ce/3a3bcec8dc575e54ad5e4bb3b9d420ad.jpg" alt="Personagem">
+            <div class="personDesc">
+                <p>Nome: Askell</p>
+                <p>Condições:</p>
+
+                <div class="condicoes">
+                    <button onclick="ficarVerde(this)">Amedrontado</button>
+                    <button onclick="ficarVerde(this)">Atordoado</button>
+                    <button onclick="ficarVerde(this)">Confuso</button>
+                    <button onclick="ficarVerde(this)">Convalescente</button>
+                    <button onclick="ficarVerde(this)">Descansado</button>
+                    <button onclick="ficarVerde(this)">Dissonante</button>
+                    <button onclick="ficarVerde(this)">Envenenado</button>
+                    <button onclick="ficarVerde(this)">Escondido</button>
+                    <button onclick="ficarVerde(this)">Expandido</button>
+                    <button onclick="ficarVerde(this)">Exposto</button>
+                    <button onclick="ficarVerde(this)">Fadigado</button>
+                    <button onclick="ficarVerde(this)">Ferido</button>
+                    <button onclick="ficarVerde(this)">Preso</button>
+                    <button onclick="ficarVerde(this)">Queimado</button>
+                    <button onclick="ficarVerde(this)">Revigorado</button>
+                </div>
+            </div>
+        </section>
+
+        <div class="break">
+            <span class="linha"></span>
+            <p>Partes</p>
+            <span class="linha"></span>
+        </div>
+
+        <section class="partes">
+            <div class="parte">
+                <p>
+                    <b>ESCAMAS.</b> Alcance: 1 (<span class="azul">AGARRAR</span> <span class="amarelo">PODEROSO</span>)
+                    Passiva: se você conseguir Atacar ela fica <span class="vermelho">PRESA</span>
+                </p>
+                <ul>
+                    <li>Se Quebrado: Alcance: 1 (<span class="azul">AGARRAR</span> <span class="amarelo">PODEROSO</span>)</li>
+                </ul>
+            </div>
+
+            <span class="dotline"></span>
+
+            <div class="parte">
+                <p>
+                    <b>ESCAMAS.</b> Alcance: 1 (<span class="azul">AGARRAR</span> <span class="amarelo">PODEROSO</span>)
+                    Passiva: se você conseguir Atacar ela fica <span class="vermelho">PRESA</span>
+                </p>
+                <ul>
+                    <li>Se Quebrado: Alcance: 1 (<span class="azul">AGARRAR</span> <span class="amarelo">PODEROSO</span>)</li>
+                </ul>
+            </div>
+
+            <span class="dotline"></span>
+
+            <div class="parte">
+                <p>
+                    <b>ESCAMAS.</b> Alcance: 1 (<span class="azul">AGARRAR</span> <span class="amarelo">PODEROSO</span>)
+                    Passiva: se você conseguir Atacar ela fica <span class="vermelho">PRESA</span>
+                </p>
+                <ul>
+                    <li>Se Quebrado: Alcance: 1 (<span class="azul">AGARRAR</span> <span class="amarelo">PODEROSO</span>)</li>
+                </ul>
+            </div>
+
+            <div class="durabilidade">
+                <p id="durabtitulo">DURABILIDADE(respectivamente)</p>
+                <div class="durabValores">
+                    <p class="center">20</p>
+                    <p class="center">20</p>
+                    <p class="center">20</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="break">
+            <span class="linha"></span>
+            <p>Comportamento</p>
+            <span class="linha"></span>
+        </div>
+
+        <section class="comportamento">
+            <div class="descContainer">
+                <p class="descTitulo">Comportamento:</p>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reprehenderit rerum quos ab, quibusdam autem nam exercitationem facilis labore architecto quod nihil consectetur corporis porro sint sed in tenetur, quas minima.</p>
+                <p>lorem</p>
+            </div>
+
+            <div class="descContainer">
+                <p class="descTitulo">Dieta:</p>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reprehenderit rerum quos ab, quibusdam autem nam exercitationem facilis labore architecto quod nihil consectetur corporis porro sint sed in tenetur, quas minima.</p>
+                <p>lorem</p>
+            </div>
+
+            <div class="descContainer">
+                <p class="descTitulo">Habitat:</p>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reprehenderit rerum quos ab, quibusdam autem nam exercitationem facilis labore architecto quod nihil consectetur corporis porro sint sed in tenetur, quas minima.</p>
+                <p>lorem</p>
+            </div>
+        </section>
+
+        <div class="break">
+            <span class="linha"></span>
+            <p>Pontos / Habilidades</p>
+            <span class="linha"></span>
+        </div>
+
+        <section class="pontos">
+            <p class="titulo">Estilos</p>
+            <div class="estiloContainer">
+                <div class="estilo">
+                    <p class="amarelo center">LIGEIRO</p>
+                    <p class="center">0</p>
+                </div>
+                <div class="estilo">
+                    <p class="amarelo center">PODEROSO</p>
+                    <p class="center">0</p>
+                </div>
+                <div class="estilo">
+                    <p class="amarelo center">PRECISO</p>
+                    <p class="center">0</p>
+                </div>
+                <div class="estilo">
+                    <p class="amarelo center">SAGAZ</p>
+                    <p class="center">0</p>
+                </div>
+            </div>
+
+            <p class="titulo">Habilidades</p>
+            <div class="habilidadesContainer">
+                <div class="habilidade">
+                    <p class="azul center">AGARRAR</p>
+                    <p class="center">0</p>
+                </div>
+                <div class="habilidade">
+                    <p class="azul center">ATIRAR</p>
+                    <p class="center">0</p>
+                </div>
+                <div class="habilidade">
+                    <p class="azul center">CURAR</p>
+                    <p class="center">0</p>
+                </div>
+                <div class="habilidade">
+                    <p class="azul center">GOLPEAR</p>
+                    <p class="center">0</p>
+                </div>
+                <div class="habilidade">
+                    <p class="azul center">ARMAZENAR</p>
+                    <p class="center">0</p>
+                </div>
+                <div class="habilidade">
+                    <p class="azul center">ATRAVESSAR</p>
+                    <p class="center">0</p>
+                </div>
+                <div class="habilidade">
+                    <p class="azul center">ESTUDAR</p>
+                    <p class="center">0</p>
+                </div>
+                <div class="habilidade">
+                    <p class="azul center">MANUFATURAR</p>
+                    <p class="center">0</p>
+                </div>
+                <div class="habilidade">
+                    <p class="azul center">ASSEGURAR</p>
+                    <p class="center">0</p>
+                </div>
+                <div class="habilidade">
+                    <p class="azul center">CHAMAR</p>
+                    <p class="center">0</p>
+                </div>
+                <div class="habilidade">
+                    <p class="azul center">EXIBIR</p>
+                    <p class="center">0</p>
+                </div>
+                <div class="habilidade">
+                    <p class="azul center">PROCURAR</p>
+                    <p class="center">0</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="tracos">
+            <p class="titulo">Traços</p>
+            <p class="traco">
+                <span class="verde">ARMADURA NATURAL</span> (Passiva) Faz isso isso aquilo aquilo
+                <span class="azul">ATIRAR</span> <span class="amarelo">PODEROSO</span>
+            </p>
+            <p class="traco">
+                <span class="verde">ARMADURA NATURAL</span> (Passiva) Faz isso isso aquilo aquilo
+                <span class="azul">ATIRAR</span> <span class="amarelo">PODEROSO</span>
+            </p>
+            <p class="traco">
+                <span class="verde">ARMADURA NATURAL</span> (Passiva) Faz isso isso aquilo aquilo
+                <span class="azul">ATIRAR</span> <span class="amarelo">PODEROSO</span>
+            </p>
+        </section>
+
+        <section class="adicionais">
+            <p class="titulo">Adicionais</p>
+            <p class="adc">CATAR PIOLHO</p>
+            <p class="adc">LIMBUS COMPANY</p>
+            <p class="adc">DIGESTÃO LENTA</p>
+        </section>
+    </main>
+{% endblock content %}

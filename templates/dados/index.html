@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dados - Wilderfeast</title>
+    <link rel="stylesheet" href="/main.css">
+    <link rel="stylesheet" href="/dados/style.css">
+    <link rel="icon" href="/imagens/favicon.png">
+</head>
+<body>
+    <header>
+        <a href="/index.html">
+            <img src="/imagens/wilderfeast.png" alt="Wilderfeast">
+        </a>
+        <div class="links">
+            <a href="/dados/index.html">Dados</a>
+            <a href="/fichas/index.html">Fichas</a>
+            <a href="/bestiario/index.html">Bestiário</a>
+            <a>Mestre</a>
+        </div>
+    </header>
+
+    <main>
+        <div class="dadocontainer">
+            <p class="title">Dado de humano</p>
+            <div class="dado center" id="d8">
+                <p>1</p>
+            </div>
+            <button class="rolar center" onclick="rolarD8()">Rolar</button>
+        </div>
+
+        <div class="dadocontainer">
+            <p class="title">Dado de animal</p>
+            <div class="dado center" id="d20">
+                <p>1</p>
+            </div>
+            <button class="rolar center" onclick="rolarD20()">Rolar</button>
+        </div>
+
+        <div class="dadocontainer">
+            <p class="title">Dados de estilo</p>
+            <div class="dadosEstilo">
+                <div class="dado center" id="d6">
+                    <p>1</p>
+                </div>
+                <div class="dado center" id="d6">
+                    <p>1</p>
+                </div>
+                <div class="dado center" id="d6">
+                    <p>1</p>
+                </div>
+                <div class="dado center" id="d6">
+                    <p>1</p>
+                </div>
+                <div class="dado center" id="d6">
+                    <p>1</p>
+                </div>
+            </div>
+            <div class="btns">
+                <div class="SelecionarQnt">
+                    <p>Quantidade de dados:</p>
+                    <select name="s" id="qntdados">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                </div>
+                <button class="rolar center" onclick="rolarD6()">Rolar</button>
+            </div>
+        </div>
+    </main>
+    <script src="/dados/script.js"></script>
+</body>
+</html>
