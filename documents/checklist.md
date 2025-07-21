@@ -8,11 +8,11 @@
 
 ### Semana 2 (11/07–17/07)
 - Implementar autenticação:
-    - Página de registro
-    - Página de login
-    - Senha com hash seguro
-    - Sessão ou Flask-Login para manter usuário autenticado
-- Logout funcional
+    - Página de registro ✅
+    - Página de login ✅
+    - Senha com hash seguro ✅
+    - Sessão ou Flask-Login para manter usuário autenticado ✅
+- Logout funcional ✅
 - Templates com extends/includes para base e navbar ✅
 
 

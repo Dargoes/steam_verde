@@ -1,5 +1,5 @@
 # Tema 
-- Um site onde é possível comprar e baixar jogos com o maior custo benefício do mercado (Forte inspiração na Steam verde)
+- Um projeto feito para melhorar a organização do nosso RPG
 
 # Requisitos funcionais do projeto
 - RF01: Sistema de autenticação
