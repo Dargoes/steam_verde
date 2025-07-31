@@ -11,7 +11,7 @@ db = SQLAlchemy(model_class=Base)
 class User(db.Model, UserMixin):
     user_id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
     nome: Mapped[str]
-    email: Mapped[str] = mapped_column(unique=True)
+    email: Mapped[str] = mapped_column(unique=True, nullable=False)
     senha_hash: Mapped[str]
 
     def get_id(self):
