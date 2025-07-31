@@ -10,7 +10,7 @@ db = SQLAlchemy(model_class=Base)
 
 class User(db.Model, UserMixin):
     user_id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
-    nome: Mapped[str]
+    nome: Mapped[str] = mapped_column(nullable=False)
     email: Mapped[str] = mapped_column(unique=True, nullable=False)
     senha_hash: Mapped[str]
 
