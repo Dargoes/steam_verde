@@ -13,7 +13,8 @@ pip install -r requirements.txt
 ```
 # Para rodar o site
 ```
-python -m http.server
+python app.py
 ```
-Depois disso, acesse [http://localhost:8000/](http://localhost:8000/) no seu navegador!
+Depois disso, acesse [http://localhost:5000/](http://localhost:5000/) no seu navegador!
+
 
