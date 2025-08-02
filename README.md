@@ -1,10 +1,20 @@
 # Wilderfeast
-Um projeto feito para melhorar a organização do nosso RPG
+Um projeto para a matéria de PSI feito para melhorar a organização do nosso RPG
 
-# How to install
+# Como clonar o repositório
 ```
-git clone https://github.com/MoisesLN/Wilderfeast.git
-cd Wilderfeast
-python -m http.server
+git clone https://github.com/Dargoes/steam_verde.git
+cd steam_verde
 ```
-After that, just acess [http://localhost:8000/](http://localhost:8000/) on your browser! This runs a local server (similar to VS Code's extension Live Server).
+# Como baixar os requisitos
+Dentro do repositório execute:
+```
+pip install -r requirements.txt
+```
+# Para rodar o site
+```
+python app.py
+```
+Depois disso, acesse [http://localhost:5000/](http://localhost:5000/) no seu navegador!
+
+
