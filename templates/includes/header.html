@@ -1,12 +1,12 @@
 {% block header %}
     <header>
-        <a href="/index.html">
+        <a href="{{ url_for('index') }}">
             <img src="{{ url_for('static', filename='imagens/wilderfeast.png') }}" alt="wilderfeast">
         </a>
         <div class="links">
-            <a href="/dados/index.html">Dados</a>
-            <a href="/fichas/index.html">Fichas</a>
-            <a href="/bestiario/index.html">Bestiário</a>
+            <a href="{{ url_for('dados') }}">Dados</a>
+            <a href="{{ url_for('fichas') }}">Fichas</a>
+            <a href="{{ url_for('bestiario') }}">Bestiário</a>
             <a>Mestre</a>
         </div>
     </header>

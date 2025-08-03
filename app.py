@@ -82,5 +82,17 @@ def logout():
     logout_user()
     return redirect(url_for('index'))
 
+@app.route('/dados')
+def dados():
+    return render_template('dados.html')
+
+@app.route('/fichas')
+def fichas():
+    return render_template('fichas.html')
+
+@app.route('/bestiario')
+def bestiario():
+    return render_template('bestiario.html')
+
 if __name__ == '__main__':
     app.run(debug=True)

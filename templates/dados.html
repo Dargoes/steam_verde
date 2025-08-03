@@ -1,26 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dados - Wilderfeast</title>
-    <link rel="stylesheet" href="/main.css">
-    <link rel="stylesheet" href="/dados/style.css">
-    <link rel="icon" href="/imagens/favicon.png">
-</head>
-<body>
-    <header>
-        <a href="/index.html">
-            <img src="/imagens/wilderfeast.png" alt="Wilderfeast">
-        </a>
-        <div class="links">
-            <a href="/dados/index.html">Dados</a>
-            <a href="/fichas/index.html">Fichas</a>
-            <a href="/bestiario/index.html">Bestiário</a>
-            <a>Mestre</a>
-        </div>
-    </header>
+{% extends 'base.html' %}
 
+{% block title %}Dados - Wilderfeast{% endblock %}
+
+{% block links %}
+<link rel="stylesheet" href="/dados/style.css">
+<link rel="icon" href="/imagens/favicon.png">
+{% endblock %}
+
+{% block content %}
     <main>
         <div class="dadocontainer">
             <p class="title">Dado de humano</p>
@@ -73,5 +60,4 @@
         </div>
     </main>
     <script src="/dados/script.js"></script>
-</body>
-</html>
+{% endblock %}
