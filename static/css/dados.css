@@ -40,14 +40,14 @@ main{
     scale: 1.1;
 }
 #d8{
-    background-image: url("/imagens/d8.png");
+    background-image: url("../imagens/d8.png");
 }
 #d20{
-    background-image: url("/imagens/d20.png");
+    background-image: url("../imagens/d20.png");
     background-position: -2px 0;
 }
 #d6{
-    background-image: url("/imagens/d6.png");
+    background-image: url("../imagens/d6.png");
     background-position: 10px -15px;
 }
 .dadosEstilo{

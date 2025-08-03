@@ -90,9 +90,17 @@ def dados():
 def fichas():
     return render_template('fichas.html')
 
+@app.route('/personagem-detail')
+def personagem_detail():
+    return render_template('fichapersonagem.html')
+
 @app.route('/bestiario')
 def bestiario():
     return render_template('bestiario.html')
+
+@app.route('/bestiario-detail')
+def bestiario_detail():
+    return render_template('ficha_bestiario.html')
 
 if __name__ == '__main__':
     app.run(debug=True)

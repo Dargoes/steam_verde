@@ -3,8 +3,7 @@
 {% block title %}Dados - Wilderfeast{% endblock %}
 
 {% block links %}
-<link rel="stylesheet" href="/dados/style.css">
-<link rel="icon" href="/imagens/favicon.png">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/dados.css') }}">
 {% endblock %}
 
 {% block content %}
@@ -59,5 +58,5 @@
             </div>
         </div>
     </main>
-    <script src="/dados/script.js"></script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
 {% endblock %}

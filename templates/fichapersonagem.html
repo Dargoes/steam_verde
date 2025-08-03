@@ -1,27 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ficha de personagem - Wilderfeast</title>
-    <link rel="stylesheet" href="/fichapersonagem/style.css">
-    <link rel="stylesheet" href="/main.css">
-    <script src="{{ url_for('static', filename='main.js') }}" defer></script>
-    <link rel="icon" href="/imagens/favicon.png">
-</head>
-<body>
-    <header>
-        <a href="/index.html">
-            <img src="/imagens/wilderfeast.png" alt="Wilderfeast">
-        </a>
-        <div class="links">
-            <a href="/dados/index.html">Dados</a>
-            <a href="/fichas/index.html">Fichas</a>
-            <a href="/bestiario/index.html">Bestiário</a>
-            <a>Mestre</a>
-        </div>
-    </header>
+{% extends 'base.html' %}
 
+
+{% block title %}Ficha de personagem - Wilderfeast{% endblock %}
+
+{% block links %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/ficha_personagem.css') }}">
+{% endblock %}
+
+{% block content %}
     <main>
         <section class="personagem">
             <img src="https://i.pinimg.com/736x/3a/3b/ce/3a3bcec8dc575e54ad5e4bb3b9d420ad.jpg" alt="Personagem">
@@ -201,5 +187,4 @@
             </p>
         </section>
     </main>
-</body>
-</html>
+{% endblock %}

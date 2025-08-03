@@ -3,8 +3,7 @@
 {% block title %}Fichas - Wilderfeast{% endblock %}
 
 {% block links %}
-<link rel="stylesheet" href="/fichas/style.css">
-<link rel="icon" href="/imagens/favicon.png">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/fichas.css') }}">
 {% endblock %}
 
 {% block content %}
@@ -14,7 +13,7 @@
             <section class="fichas">
                 <div class="ficha">
                     <div class="top">
-                        <img src="/imagens/besta.png" alt="Foto da criatura">
+                        <img src="{{ url_for('static', filename='imagens/besta.png') }}" alt="Foto da criatura">
         
                         <div class="direita">
                             <div class="nome">
@@ -63,13 +62,13 @@
                         <div class="utensilio">
                             <p>Utensílio</p>
                             <p>Garfo</p>
-                            <a href="/fichapersonagem/index.html" class="fichabtn efeito">Ficha Completa</a>
+                            <a href="{{ url_for('personagem_detail') }}" class="fichabtn efeito">Ficha Completa</a>
                         </div>
                     </div>
                 </div>
                 <div class="ficha">
                     <div class="top">
-                        <img src="/imagens/besta2.png" alt="Foto da criatura">
+                        <img src="{{ url_for('static', filename='imagens/besta2.png') }}" alt="Foto da criatura">
         
                         <div class="direita">
                             <div class="nome">
@@ -118,13 +117,13 @@
                         <div class="utensilio">
                             <p>Utensílio</p>
                             <p>Luva</p>
-                            <a href="/fichapersonagem/index.html" class="fichabtn efeito">Ficha Completa</a>
+                            <a href="{{ url_for('personagem_detail') }}" class="fichabtn efeito">Ficha Completa</a>
                         </div>
                     </div>
                 </div>
                 <div class="ficha">
                     <div class="top">
-                        <img src="/imagens/besta5.png" alt="Foto da criatura">
+                        <img src="{{ url_for('static', filename='imagens/besta5.png') }}" alt="Foto da criatura">
         
                         <div class="direita">
                             <div class="nome">
@@ -173,7 +172,7 @@
                         <div class="utensilio">
                             <p>Utensílio</p>
                             <p>Luva</p>
-                            <a href="/fichapersonagem/index.html" class="fichabtn efeito">Ficha Completa</a>
+                            <a href="{{ url_for('personagem_detail') }}" class="fichabtn efeito">Ficha Completa</a>
                             
                         </div>
                     </div>
