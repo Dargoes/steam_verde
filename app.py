@@ -4,7 +4,6 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from database import *
 
 app = Flask(__name__)
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///project.db"
 app.secret_key = 'Romerito-Senpai'
 
 login_manager = LoginManager()
