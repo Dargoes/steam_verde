@@ -2,28 +2,24 @@ from __future__ import annotations
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin
-from sqlalchemy.orm import DeclarativeBase
-from sqlalchemy.orm import Mapped, mapped_column, relationship
-from sqlalchemy import CheckConstraint
-from typing import List, Optional
+from sqlalchemy.orm import Mapped, mapped_column
 
 app = Flask(__name__)
-app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://usuario:senha@localhost/dbname"  # ajuste conforme
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///project.db"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db = SQLAlchemy(app)
 
 
 class User(db.Model, UserMixin):
-  user_id: db.Column(db.Integer, primary_key=True)
-  nome: Mapped[str] = mapped_column(nullable=False)
-  email: Mapped[str] = mapped_column(unique=True, nullable=False)
-  senha_hash: Mapped[str]
+    user_id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
+    nome: Mapped[str] = mapped_column(nullable=False)
+    email: Mapped[str] = mapped_column(unique=True, nullable=False)
+    senha_hash: Mapped[str]
 
-  def get_id(self):
-    return str(self.user_id)
+    def get_id(self):
+        return str(self.user_id)
 
     
-# Associação many-to-many entre Feral e Condicao
 feral_condicao = db.Table(
     "feral_condicao",
     db.Column("feral_id", db.Integer, db.ForeignKey("feral.id", ondelete="CASCADE"), primary_key=True),
@@ -43,7 +39,6 @@ class Feral(db.Model):
     ambicao = db.Column(db.Text, nullable=False)
     conexao = db.Column(db.Text, nullable=False)
 
-    # relacionamentos
     condicoes = db.relationship("Condicao", secondary=feral_condicao, back_populates="ferais")
     utensilios = db.relationship("Utensilio", back_populates="feral", cascade="all, delete-orphan")
     estilo = db.relationship("FeralEstilo", uselist=False, back_populates="feral", cascade="all, delete-orphan")

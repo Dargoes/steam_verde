@@ -3,7 +3,6 @@ from flask_login import LoginManager, login_user, logout_user, login_required
 from werkzeug.security import generate_password_hash, check_password_hash
 from database import *
 
-app = Flask(__name__)
 app.secret_key = 'Romerito-Senpai'
 
 login_manager = LoginManager()
@@ -11,21 +10,21 @@ login_manager.init_app(app)
 
 db.init_app(app)
 
+
 def criar_banco():
     with app.app_context():
         db.create_all()
+
 
 @login_manager.user_loader
 def load_user(user_id):
     return db.session.get(User, int(user_id))
 
 
-
 @app.route('/')
 def index():
     criar_banco()
     return render_template('index.html')
-
 
 
 @app.route("/register", methods=["GET", "POST"])
@@ -47,7 +46,6 @@ def register():
         return
 
     return render_template("index.html")
-
 
 
 @app.route("/login", methods=["GET", "POST"])
@@ -74,32 +72,37 @@ def login():
     return render_template("index.html")
 
 
-
 @login_required
 @app.route('/logout')
 def logout():
     logout_user()
     return redirect(url_for('index'))
 
+
 @app.route('/dados')
 def dados():
     return render_template('dados.html')
+
 
 @app.route('/fichas')
 def fichas():
     return render_template('fichas.html')
 
+
 @app.route('/personagem-detail')
 def personagem_detail():
     return render_template('fichapersonagem.html')
+
 
 @app.route('/bestiario')
 def bestiario():
     return render_template('bestiario.html')
 
+
 @app.route('/bestiario-detail')
 def bestiario_detail():
     return render_template('ficha_bestiario.html')
+
 
 if __name__ == '__main__':
     app.run(debug=True)
