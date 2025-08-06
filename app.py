@@ -18,6 +18,8 @@ def criar_banco():
 
 @login_manager.user_loader
 def load_user(user_id):
+    if not user_id or user_id == "None":
+        return None
     return db.session.get(User, int(user_id))
 
 
@@ -25,6 +27,11 @@ def load_user(user_id):
 def index():
     criar_banco()
     return render_template('index.html')
+
+@app.route('/home')
+def home():
+    criar_banco()
+    return render_template('home.html')
 
 
 @app.route("/register", methods=["GET", "POST"])
@@ -40,12 +47,12 @@ def register():
             db.session.add(user)
             db.session.commit()
             login_user(user)
-            return
+            return redirect(url_for('home'))
         
         flash('ERRO 403! Este usuário já existe.', category='error')
         return
 
-    return render_template("index.html")
+    return render_template("cadastro.html")
 
 
 @app.route("/login", methods=["GET", "POST"])
@@ -54,22 +61,23 @@ def login():
         nome = request.form.get('nome')
         email = request.form.get('email')
         senha = request.form.get('senha')
-        
+
         validar_user = db.session.execute(db.select(User).filter_by(email=email)).first()
         if not validar_user:
             flash('ERRO 404! Usuário não cadastrado', category='error')
-            return render_template("index.html")
+            return redirect(url_for('login'))
         
+        user = validar_user[0]
+
         validar_senha = db.session.execute(db.select(User).filter_by(email=email)).scalar()
         if validar_senha and check_password_hash(validar_senha.senha_hash, senha):
-            user = User(nome=nome, email=email, senha_hash=validar_senha.senha_hash)
             login_user(user)
-            return render_template("index.html")
+            return redirect(url_for('home'))
         
-        flash('ERRO 401! Verfique sua senha e tente novamente', category='success')
-        return render_template("index.html")
+        flash('ERRO 401! Verifique sua senha e tente novamente', category='error')
+        return redirect(url_for('login'))
     
-    return render_template("index.html")
+    return render_template("login.html")
 
 
 @login_required

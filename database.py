@@ -7,7 +7,7 @@ from sqlalchemy.orm import Mapped, mapped_column
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///project.db"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-db = SQLAlchemy(app)
+db = SQLAlchemy()
 
 
 class User(db.Model, UserMixin):

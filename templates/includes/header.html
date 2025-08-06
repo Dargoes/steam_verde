@@ -8,6 +8,15 @@
             <a href="{{ url_for('fichas') }}">Fichas</a>
             <a href="{{ url_for('bestiario') }}">Bestiário</a>
             <a>Mestre</a>
-        </div>
+            <div class="perfil-container">
+                <button id="perfil-btn" class="perfil" data-logout-url="{{ url_for('logout') }}">
+                    {{ current_user.nome }}
+                </button>
+
+                <div id="popup-logout" class="popup hidden">
+                    <button id="logout-btn">Logout</button>
+                </div>
+            </div>
     </header>
+    <script src="{{ url_for('static', filename='logout.js') }}"></script>
 {% endblock %}
