@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, url_for, request, flash
+from flask import render_template, redirect, url_for, request, flash
 from flask_login import LoginManager, login_user, logout_user, login_required
 from werkzeug.security import generate_password_hash, check_password_hash
 from database import *
@@ -41,7 +41,7 @@ def register():
         email = request.form.get('email')
         senha = request.form.get('senha')
 
-        validar_user = db.session.execute(db.select(User).filter_by(email=email)).first()
+        validar_user = db.session.execute(db.select(User).filter_by(email=email)).scalar()
         if not validar_user:
             user = User(nome=nome, email=email, senha_hash=generate_password_hash(senha))
             db.session.add(user)
@@ -50,7 +50,7 @@ def register():
             return redirect(url_for('home'))
         
         flash('ERRO 403! Este usuário já existe.', category='error')
-        return
+        return redirect(url_for('register'))
 
     return render_template("cadastro.html")
 
@@ -58,20 +58,17 @@ def register():
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == 'POST':
-        nome = request.form.get('nome')
         email = request.form.get('email')
         senha = request.form.get('senha')
 
-        validar_user = db.session.execute(db.select(User).filter_by(email=email)).first()
+        validar_user = db.session.execute(db.select(User).filter_by(email=email)).scalar()
         if not validar_user:
             flash('ERRO 404! Usuário não cadastrado', category='error')
             return redirect(url_for('login'))
-        
-        user = validar_user[0]
 
         validar_senha = db.session.execute(db.select(User).filter_by(email=email)).scalar()
         if validar_senha and check_password_hash(validar_senha.senha_hash, senha):
-            login_user(user)
+            login_user(validar_user)
             return redirect(url_for('home'))
         
         flash('ERRO 401! Verifique sua senha e tente novamente', category='error')
