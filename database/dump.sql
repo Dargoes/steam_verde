@@ -103,13 +103,6 @@ CREATE TABLE monstro_habilidade (
     PRIMARY KEY (monstro_id, habilidade_id)
 );
 
--- Ação
-CREATE TABLE acao (
-    id SERIAL PRIMARY KEY,
-    nome VARCHAR(100) NOT NULL,
-    descricao TEXT
-);
-
 -- Monstros
 CREATE TABLE monstro (
     id SERIAL PRIMARY KEY,
@@ -120,15 +113,8 @@ CREATE TABLE monstro (
     partes INT NOT NULL,
     max_partes INT NOT NULL,
     descricao TEXT,
-    alvos TEXT NOT NULL
-);
-
--- Ações Monstros
-CREATE TABLE monstro_acao (
-    id SERIAL PRIMARY KEY,
-    monstro_id INT NOT NULL REFERENCES monstro(id) ON DELETE CASCADE,
-    acao_id INT NOT NULL REFERENCES acao(id) ON DELETE CASCADE,
-    UNIQUE (monstro_id, acao_id)
+    alvos TEXT NOT NULL,
+    acoes TEXT NOT NULL
 );
 
 -- Partes dos monstros
