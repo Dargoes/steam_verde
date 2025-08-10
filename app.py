@@ -328,9 +328,65 @@ def personagem_detail():
 def bestiario():
     return render_template('bestiario.html')
 
+@app.route('/bestiariocreate', methods=['POST', 'GET'])
+def bestiario_create():
+    if request.method == 'POST':
 
-@app.route('/bestiario-detail')
+        nome = request.form['nome']
+        categoria = request.form['categoria']
+        resistencia_base = request.form['resistencia_base']
+        descricao = request.form['descricao']
+        alvos = request.form['alvos']
+        acoes = request.form['acoes']
+
+        monstro = Monstro(
+                nome=nome,
+                categoria=categoria,
+                resistencia_base=resistencia_base,
+                resistencia_atual=resistencia_base,
+                descricao=descricao,
+                alvos=alvos,
+                acoes=acoes,
+            )
+        
+        db.session.add(monstro)
+        db.session.commit()
+
+        return redirect(url_for('bestiario'))
+
+    return render_template("createbestiario.html") 
+    
+
+@app.route('/delete/monstro/<int:id>', methods=['GET', 'POST'])
+def delete_monstro(id):
+
+    monstro = Monstro.query.get(id)
+    if monstro:
+        db.session.delete(monstro)
+        db.session.commit()
+    return redirect(url_for('bestiario'))
+
+
+@app.route('/edit/monstro/<int:id>')
 def bestiario_detail():
+    
+    monstro = Monstro.query.filter_by(id=id).first()
+
+    if request.method == 'POST':
+            if monstro:
+                monstro.nome = request.form['nome']
+                monstro.categoria = request.form['categoria']
+                monstro.resistencia_base = request.form['resistencia_base']
+                monstro.descricao = request.form['descricao']
+                monstro.alvos = request.form['alvos']
+                monstro.acoes = request.form['acoes']
+
+                db.session.commit()
+                return redirect(url_for('bestiario'))
+        
+    return render_template('edit_monstro', monstro=monstro)
+
+
     return render_template('ficha_bestiario.html')
 
 

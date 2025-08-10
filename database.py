@@ -119,21 +119,19 @@ class Monstro(db.Model):
     categoria = db.Column(db.String(20), db.CheckConstraint("categoria IN ('Jovem','Adulto','Apex')"))
     resistencia_base = db.Column(db.Integer, nullable=False)
     resistencia_atual = db.Column(db.Integer, nullable=False)
-    partes = db.Column(db.Integer, nullable=False)
-    max_partes = db.Column(db.Integer, nullable=False)
     descricao = db.Column(db.Text)
     alvos = db.Column(db.Text)
     acoes = db.Column(db.Text)
 
-    partes_rel = db.relationship("Parte", back_populates="monstro", cascade="all, delete-orphan")
+    # partes_rel = db.relationship("Parte", back_populates="monstro", cascade="all, delete-orphan")
 
 
-class Parte(db.Model):
-    __tablename__ = "parte"
-    id = db.Column(db.Integer, primary_key=True)
-    monstro_id = db.Column(db.Integer, db.ForeignKey("monstro.id", ondelete="CASCADE"), nullable=False)
-    nome = db.Column(db.String(100), nullable=False)
-    quantidade = db.Column(db.Integer, nullable=False)
-    modificador_max = db.Column(db.Integer)
+# class Parte(db.Model):
+#     __tablename__ = "parte"
+#     id = db.Column(db.Integer, primary_key=True)
+#     monstro_id = db.Column(db.Integer, db.ForeignKey("monstro.id", ondelete="CASCADE"), nullable=False)
+#     nome = db.Column(db.String(100), nullable=False)
+#     quantidade = db.Column(db.Integer, nullable=False)
+#     modificador_max = db.Column(db.Integer)
 
-    monstro = db.relationship("Monstro", back_populates="partes_rel")
+#     monstro = db.relationship("Monstro", back_populates="partes_rel")
