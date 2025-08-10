@@ -125,9 +125,7 @@ class Monstro(db.Model):
     alvos = db.Column(db.Text)
     acoes = db.Column(db.Text)
 
-    acoes = db.relationship("Acao",secondary="monstro_acao",back_populates="monstros")
     partes_rel = db.relationship("Parte", back_populates="monstro", cascade="all, delete-orphan")
-    prioridades = db.relationship("AlvoPrioridade", back_populates="monstro", cascade="all, delete-orphan")
 
 
 class Parte(db.Model):
