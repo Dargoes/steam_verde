@@ -261,11 +261,45 @@ def create_feral():
 
         db.session.add(feral)
         db.session.commit()
-        return redirect(url_for('index'))
+        return redirect(url_for('fichas'))
 
     return render_template('create_feral.html', condicoes=condicoes_existentes)
 
+@app.route('/delete/feral/<int:id_feral>', methods=['GET', 'POST'])
+def delete_feral(id_feral):
 
+    feral = Feral.query.get(id_feral)
+    if feral:
+        db.session.delete(feral)
+        db.session.commit()
+    return redirect(url_for('fichas'))
+
+@app.route('/edit/feral/<int:id_feral>', methods=['GET', 'POST'])
+def edit_feral(id_feral):
+
+    feral = Feral.query.filter_by(id=id_feral).first()
+
+    
+    
+    if request.method == 'POST':
+            if feral:
+                feral.nome = request.form['nome']
+                feral.titulo = request.form['titulo']
+                feral.player = request.form['player']
+                feral.criacao = request.form['criacao']
+                feral.iniciacao = request.form['iniciacao']
+                feral.ambicao = request.form['ambicao']
+                feral.conexao = request.form['conexao']
+                feral.especialidade = request.form['especialidade']
+
+
+                
+                db.session.commit()
+                return redirect(url_for('fichas'))
+        
+    return render_template('edit_feral.html', feral=feral)
+
+    
 
 @login_required
 @app.route('/logout')
