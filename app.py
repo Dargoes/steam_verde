@@ -120,8 +120,9 @@ def create_feral():
         imagem = request.files['imagem']
         if imagem and imagem.filename != '':
             filename = secure_filename(imagem.filename)
+            caminho_save = os.path.join(app.config['UPLOAD_FOLDER'], filename)
             caminho = os.path.join(filename)
-            imagem.save(caminho)
+            imagem.save(caminho_save)
             imagem_url = caminho
         else:
             imagem_url = ''
