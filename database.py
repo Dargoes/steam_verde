@@ -38,6 +38,7 @@ class Feral(db.Model):
     iniciacao = db.Column(db.Text, nullable=False)
     ambicao = db.Column(db.Text, nullable=False)
     conexao = db.Column(db.Text, nullable=False)
+    especialidade = db.Column(db.Text, nullable=False)
 
     condicoes = db.relationship("Condicao", secondary=feral_condicao, back_populates="ferais")
     utensilios = db.relationship("Utensilio", back_populates="feral", cascade="all, delete-orphan")
@@ -103,7 +104,7 @@ class Traco(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     feral_id = db.Column(db.Integer, db.ForeignKey("feral.id", ondelete="CASCADE"), nullable=False)
     nome = db.Column(db.String(100), nullable=False)
-    tipo = db.Column(db.String(50), nullable=False)
+    custo = db.Column(db.String(50), nullable=False)
     descricao = db.Column(db.Text, nullable=False)
     habilidade_relacionada = db.Column(db.String(50), nullable=False)
     estilo_relacionado = db.Column(db.String(50), nullable=False)

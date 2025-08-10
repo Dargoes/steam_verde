@@ -10,177 +10,76 @@
     <main>
         <section class="fichascontainer">
             <p class="title">Fichas</p>
+            
             <section class="fichas">
-                <div class="ficha">
-                    <div class="top">
-                        <img src="{{ url_for('static', filename='imagens/besta.png') }}" alt="Foto da criatura">
-        
-                        <div class="direita">
-                            <div class="nome">
-                                <p>Gata Samurai</p>
+                {% if listagem != [] %}
+                    {% for listagem in listagem %}
+                        
+                    
+                    <div class="ficha">
+                        <div class="top">
+                            <img src="{{ url_for('static', filename='uploads/' + listagem.imagem_url) }}" alt="Imagem do personagem" width="300">
+            
+                            <div class="direita">
+                                <div class="nome">
+                                    <p>{{listagem.nome}}</p>
+                                </div>
+                                <div class="status">
+                                    <div class="stat">
+                                        <p>Vigor</p>
+                                        <div class="vigorbarra">
+                                            <span>100 / 100</span>
+                                        </div>
+                                    </div>
+                                    <div class="stat">
+                                        <p>Durabilidade</p>
+                                        <div class="durabarra">
+                                            <span>100 / 100</span>
+                                        </div>
+                                    </div>
+            
+                                </div>
                             </div>
-                            <div class="status">
-                                <div class="stat">
-                                    <p>Vigor</p>
-                                    <div class="vigorbarra">
-                                        <span>100 / 100</span>
-                                    </div>
-                                </div>
-                                <div class="stat">
-                                    <p>Durabilidade</p>
-                                    <div class="durabarra">
-                                        <span>100 / 100</span>
-                                    </div>
-                                </div>
-        
+                        </div>
+                        <div class="mid">
+                            <div class="pontos">
+                                <p>Pod</p>
+                                <p>{{listagem.estilo.poderoso}}</p>
+                            </div>
+                            <div class="pontos">
+                                <p>Pre</p>
+                                <p>{{listagem.estilo.preciso}}</p>
+                            </div>
+                            <div class="pontos">
+                                <p>Lig</p>
+                                <p>{{listagem.estilo.ligeiro}}</p>
+                            </div>
+                            <div class="pontos">
+                                <p>Sag</p>
+                                <p>{{listagem.estilo.sagaz}}</p>
                             </div>
                         </div>
-                    </div>
-                    <div class="mid">
-                        <div class="pontos">
-                            <p>Pod</p>
-                            <p>+1</p>
-                        </div>
-                        <div class="pontos">
-                            <p>Pre</p>
-                            <p>+1</p>
-                        </div>
-                        <div class="pontos">
-                            <p>Lig</p>
-                            <p>+1</p>
-                        </div>
-                        <div class="pontos">
-                            <p>Sag</p>
-                            <p>+1</p>
-                        </div>
-                    </div>
-                    <div class="bottom">
-                        <div class="especialidade">
-                            <p>Especialidade</p>
-                            <p>Açougueiro</p>
-                        </div>
-                        <div class="utensilio">
-                            <p>Utensílio</p>
-                            <p>Garfo</p>
-                            <a href="{{ url_for('personagem_detail') }}" class="fichabtn efeito">Ficha Completa</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="ficha">
-                    <div class="top">
-                        <img src="{{ url_for('static', filename='imagens/besta2.png') }}" alt="Foto da criatura">
-        
-                        <div class="direita">
-                            <div class="nome">
-                                <p>Nome</p>
+                        <div class="bottom">
+                            <div class="especialidade">
+                                <p>Especialidade</p>
+                                <p>{{listagem.especialidade}}</p>
                             </div>
-                            <div class="status">
-                                <div class="stat">
-                                    <p>Vigor</p>
-                                    <div class="vigorbarra">
-                                        <span>100 / 100</span>
-                                    </div>
-                                </div>
-                                <div class="stat">
-                                    <p>Durabilidade</p>
-                                    <div class="durabarra">
-                                        <span>100 / 100</span>
-                                    </div>
-                                </div>
-        
+                            <div class="utensilio">
+                                <p>Utensílio</p>
+                                <p>{{listagem.utensilios[0].nome}}</p>
+                                <a href="{{ url_for('personagem_detail') }}" class="fichabtn efeito">Ficha Completa</a>
                             </div>
                         </div>
                     </div>
-                    <div class="mid">
-                        <div class="pontos">
-                            <p>Pod</p>
-                            <p>+1</p>
-                        </div>
-                        <div class="pontos">
-                            <p>Pre</p>
-                            <p>+1</p>
-                        </div>
-                        <div class="pontos">
-                            <p>Lig</p>
-                            <p>+1</p>
-                        </div>
-                        <div class="pontos">
-                            <p>Sag</p>
-                            <p>+1</p>
-                        </div>
-                    </div>
-                    <div class="bottom">
-                        <div class="especialidade">
-                            <p>Especialidade</p>
-                            <p>Pivoteiro</p>
-                        </div>
-                        <div class="utensilio">
-                            <p>Utensílio</p>
-                            <p>Luva</p>
-                            <a href="{{ url_for('personagem_detail') }}" class="fichabtn efeito">Ficha Completa</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="ficha">
-                    <div class="top">
-                        <img src="{{ url_for('static', filename='imagens/besta5.png') }}" alt="Foto da criatura">
-        
-                        <div class="direita">
-                            <div class="nome">
-                                <p>Nome</p>
-                            </div>
-                            <div class="status">
-                                <div class="stat">
-                                    <p>Vigor</p>
-                                    <div class="vigorbarra">
-                                        <span>100 / 100</span>
-                                    </div>
-                                </div>
-                                <div class="stat">
-                                    <p>Durabilidade</p>
-                                    <div class="durabarra">
-                                        <span>100 / 100</span>
-                                    </div>
-                                </div>
-        
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mid">
-                        <div class="pontos">
-                            <p>Pod</p>
-                            <p>+1</p>
-                        </div>
-                        <div class="pontos">
-                            <p>Pre</p>
-                            <p>+1</p>
-                        </div>
-                        <div class="pontos">
-                            <p>Lig</p>
-                            <p>+1</p>
-                        </div>
-                        <div class="pontos">
-                            <p>Sag</p>
-                            <p>+1</p>
-                        </div>
-                    </div>
-                    <div class="bottom">
-                        <div class="especialidade">
-                            <p>Especialidade</p>
-                            <p>Jardineiro</p>
-                        </div>
-                        <div class="utensilio">
-                            <p>Utensílio</p>
-                            <p>Luva</p>
-                            <a href="{{ url_for('personagem_detail') }}" class="fichabtn efeito">Ficha Completa</a>
-                            
-                        </div>
-                    </div>
-                </div>
+                    {% endfor %}
+                {% else %}
+                    <h1>vaziu</h1>
+                {% endif %}
+                
 
                 <div class="criarcontainer">
                     <button class="criar center">
-                        Criar nova
+                        <a href="{{ url_for('create_feral') }}">Criar Nova</a>
                     </button>
                 </div>
             </section>
