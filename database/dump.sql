@@ -68,7 +68,7 @@ CREATE TABLE traco (
     id SERIAL PRIMARY KEY,
     feral_id INTEGER REFERENCES feral(id) ON DELETE CASCADE,
     nome VARCHAR(100) NOT NULL,
-    tipo VARCHAR(50) NOT NULL,
+    custo VARCHAR(50) NOT NULL,
     descricao TEXT NOT NULL,
     habilidade_relacionada VARCHAR(50) NOT NULL,
     estilo_relacionado VARCHAR(50) NOT NULL
@@ -103,7 +103,6 @@ CREATE TABLE monstro_habilidade (
     PRIMARY KEY (monstro_id, habilidade_id)
 );
 
-
 -- 8. Ação
 CREATE TABLE acao (
     id SERIAL PRIMARY KEY,
@@ -120,7 +119,8 @@ CREATE TABLE monstro (
     resistencia_atual INT NOT NULL
     partes INT NOT NULL,
     max_partes INT NOT NULL,
-    descricao TEXT
+    descricao TEXT,
+    alvos TEXT NOT NULL
 );
 
 -- 9. Monstro-Ação
@@ -129,14 +129,6 @@ CREATE TABLE monstro_acao (
     monstro_id INT NOT NULL REFERENCES monstro(id) ON DELETE CASCADE,
     acao_id INT NOT NULL REFERENCES acao(id) ON DELETE CASCADE,
     UNIQUE (monstro_id, acao_id)
-);
-
--- 10. Alvo Prioridade
-CREATE TABLE alvo_prioridade (
-    id SERIAL PRIMARY KEY,
-    monstro_id INT NOT NULL REFERENCES monstro(id) ON DELETE CASCADE,
-    ordem INT NOT NULL,
-    UNIQUE (monstro_id, ordem)
 );
 
 CREATE TABLE parte (

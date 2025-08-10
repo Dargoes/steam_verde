@@ -131,6 +131,7 @@ class Monstro(db.Model):
     partes = db.Column(db.Integer, nullable=False)
     max_partes = db.Column(db.Integer, nullable=False)
     descricao = db.Column(db.Text)
+    alvos = db.Column(db.Text)
 
     acoes = db.relationship("Acao",secondary="monstro_acao",back_populates="monstros")
     partes_rel = db.relationship("Parte", back_populates="monstro", cascade="all, delete-orphan")
@@ -142,16 +143,6 @@ class MonstroAcao(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     monstro_id = db.Column(db.Integer, db.ForeignKey("monstro.id", ondelete="CASCADE"), nullable=False)
     acao_id = db.Column(db.Integer, db.ForeignKey("acao.id", ondelete="CASCADE"), nullable=False)
-
-
-class AlvoPrioridade(db.Model):
-    __tablename__ = "alvo_prioridade"
-    id = db.Column(db.Integer, primary_key=True)
-    monstro_id = db.Column(db.Integer, db.ForeignKey("monstro.id", ondelete="CASCADE"), nullable=False)
-    ordem = db.Column(db.Integer, nullable=False)
-
-    monstro = db.relationship("Monstro", back_populates="prioridades")
-
 
 
 class Parte(db.Model):
