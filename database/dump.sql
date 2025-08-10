@@ -75,19 +75,6 @@ CREATE TABLE traco (
 );
 
 
-
--- 1. Monstro
-CREATE TABLE monstro (
-    id SERIAL PRIMARY KEY,
-    nome VARCHAR(100) NOT NULL,
-    categoria VARCHAR(20) CHECK (categoria IN ('Jovem','Adulto','Apex')),
-    resistencia_base INT NOT NULL,
-    resistencia_atual INT NOT NULL
-    partes INT NOT NULL,
-    max_partes INT NOT NULL,
-    descricao TEXT
-);
-
 -- Estilos
 CREATE TABLE monstro_estilo (
     monstro_id INTEGER REFERENCES monstro(id) ON DELETE CASCADE,
@@ -116,10 +103,23 @@ CREATE TABLE monstro_habilidade (
     PRIMARY KEY (monstro_id, habilidade_id)
 );
 
+
 -- 8. Ação
 CREATE TABLE acao (
     id SERIAL PRIMARY KEY,
     nome VARCHAR(100) NOT NULL,
+    descricao TEXT
+);
+
+-- 1. Monstro
+CREATE TABLE monstro (
+    id SERIAL PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    categoria VARCHAR(20) CHECK (categoria IN ('Jovem','Adulto','Apex')),
+    resistencia_base INT NOT NULL,
+    resistencia_atual INT NOT NULL
+    partes INT NOT NULL,
+    max_partes INT NOT NULL,
     descricao TEXT
 );
 

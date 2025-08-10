@@ -110,3 +110,56 @@ class Traco(db.Model):
     estilo_relacionado = db.Column(db.String(50), nullable=False)
 
     feral = db.relationship("Feral", back_populates="tracos")
+
+
+class Acao(db.Model):
+    __tablename__ = "acao"
+    id = db.Column(db.Integer, primary_key=True)
+    nome = db.Column(db.String(100), nullable=False)
+    descricao = db.Column(db.Text)
+
+    monstros = db.relationship("Monstro",secondary="monstro_acao",back_populates="acoes")
+
+
+class Monstro(db.Model):
+    __tablename__ = "monstro"
+    id = db.Column(db.Integer, primary_key=True)
+    nome = db.Column(db.String(100), nullable=False)
+    categoria = db.Column(db.String(20), db.CheckConstraint("categoria IN ('Jovem','Adulto','Apex')"))
+    resistencia_base = db.Column(db.Integer, nullable=False)
+    resistencia_atual = db.Column(db.Integer, nullable=False)
+    partes = db.Column(db.Integer, nullable=False)
+    max_partes = db.Column(db.Integer, nullable=False)
+    descricao = db.Column(db.Text)
+
+    acoes = db.relationship("Acao",secondary="monstro_acao",back_populates="monstros")
+    partes_rel = db.relationship("Parte", back_populates="monstro", cascade="all, delete-orphan")
+    prioridades = db.relationship("AlvoPrioridade", back_populates="monstro", cascade="all, delete-orphan")
+
+
+class MonstroAcao(db.Model):
+    __tablename__ = "monstro_acao"
+    id = db.Column(db.Integer, primary_key=True)
+    monstro_id = db.Column(db.Integer, db.ForeignKey("monstro.id", ondelete="CASCADE"), nullable=False)
+    acao_id = db.Column(db.Integer, db.ForeignKey("acao.id", ondelete="CASCADE"), nullable=False)
+
+
+class AlvoPrioridade(db.Model):
+    __tablename__ = "alvo_prioridade"
+    id = db.Column(db.Integer, primary_key=True)
+    monstro_id = db.Column(db.Integer, db.ForeignKey("monstro.id", ondelete="CASCADE"), nullable=False)
+    ordem = db.Column(db.Integer, nullable=False)
+
+    monstro = db.relationship("Monstro", back_populates="prioridades")
+
+
+
+class Parte(db.Model):
+    __tablename__ = "parte"
+    id = db.Column(db.Integer, primary_key=True)
+    monstro_id = db.Column(db.Integer, db.ForeignKey("monstro.id", ondelete="CASCADE"), nullable=False)
+    nome = db.Column(db.String(100), nullable=False)
+    quantidade = db.Column(db.Integer, nullable=False)
+    modificador_max = db.Column(db.Integer)
+
+    monstro = db.relationship("Monstro", back_populates="partes_rel")
