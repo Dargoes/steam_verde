@@ -202,7 +202,7 @@ button:hover, a:hover{
 header{
     z-index: 2;
 }
-.mestre a, .bestiario a, .acessar, .criar button{
+.mestre a, .bestiario a, .acessar, .criar a{
     box-shadow: 4px 4px 8px 4px rgba(0, 0, 0, 0.2);
 }
 @media (max-width: 675px){

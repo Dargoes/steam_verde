@@ -57,7 +57,8 @@ def index():
 @app.route('/home')
 def home():
     criar_banco()
-    return render_template('home.html')
+    ferais = Feral.query.all()
+    return render_template('home.html', listagem=ferais)
 
 
 @app.route("/register", methods=["GET", "POST"])
@@ -102,6 +103,17 @@ def login():
     
     return render_template("login.html")
 
+
+@login_required
+@app.route('/logout')
+def logout():
+    logout_user()
+    return redirect(url_for('index'))
+
+@app.route('/fichas')
+def fichas():
+    ferais = Feral.query.all()
+    return render_template('fichas.html', listagem=ferais)
 
 @app.route('/create/feral', methods=['GET', 'POST'])
 def create_feral():
@@ -265,14 +277,12 @@ def create_feral():
 
     return render_template('create_feral.html', condicoes=condicoes_existentes)
 
-@app.route('/delete/feral/<int:id_feral>', methods=['GET', 'POST'])
-def delete_feral(id_feral):
 
-    feral = Feral.query.get(id_feral)
-    if feral:
-        db.session.delete(feral)
-        db.session.commit()
-    return redirect(url_for('fichas'))
+@app.route('/detail/feral/<int:id_feral>')
+def detail_feral(id_feral):
+    feral = Feral.query.filter_by(id=id_feral).first()
+    return render_template('fichapersonagem.html', feral=feral)
+
 
 @app.route('/edit/feral/<int:id_feral>', methods=['GET', 'POST'])
 def edit_feral(id_feral):
@@ -300,12 +310,14 @@ def edit_feral(id_feral):
     return render_template('edit_feral.html', feral=feral)
 
     
+@app.route('/delete/feral/<int:id_feral>', methods=['GET', 'POST'])
+def delete_feral(id_feral):
 
-@login_required
-@app.route('/logout')
-def logout():
-    logout_user()
-    return redirect(url_for('index'))
+    feral = Feral.query.get(id_feral)
+    if feral:
+        db.session.delete(feral)
+        db.session.commit()
+    return redirect(url_for('fichas'))
 
 
 @app.route('/dados')
@@ -313,19 +325,11 @@ def dados():
     return render_template('dados.html')
 
 
-@app.route('/fichas')
-def fichas():
-    ferais = Feral.query.all()
-    return render_template('fichas.html', listagem=ferais)
+@app.route('/bestiario')
+def bestiario():
+    return render_template('bestiario.html')
 
-
-@app.route('/personagem-detail')
-def personagem_detail():
-    return render_template('fichapersonagem.html')
-
-
-
-@app.route('/bestiariocreate', methods=['POST', 'GET'])
+@app.route('/bestiario/create', methods=['POST', 'GET'])
 def bestiario_create():
     if request.method == 'POST':
 
@@ -354,24 +358,12 @@ def bestiario_create():
     return render_template("createbestiario.html") 
     
 
-@app.route('/delete/monstro/<int:id>', methods=['GET', 'POST'])
-def delete_monstro(id):
-
-    monstro = Monstro.query.get(id)
-    if monstro:
-        db.session.delete(monstro)
-        db.session.commit()
-    return redirect(url_for('bestiario'))
-
-@app.route('/bestiario-detail')
+@app.route('/bestiario/detail')
 def bestiario_detail():
     return render_template('ficha_bestiario.html')
 
-@app.route('/bestiario')
-def bestiario():
-    return render_template('bestiario.html')
 
-@app.route('/edit/monstro/<int:id>')
+@app.route('/bestiario/edit/<int:id>')
 def bestiario_edit():
     
     monstro = Monstro.query.filter_by(id=id).first()
@@ -390,7 +382,14 @@ def bestiario_edit():
         
     return render_template('edit_monstro.html', monstro=monstro)
 
+@app.route('/bestiario/delete/<int:id>', methods=['GET', 'POST'])
+def bestiario_delete(id):
 
+    monstro = Monstro.query.get(id)
+    if monstro:
+        db.session.delete(monstro)
+        db.session.commit()
+    return redirect(url_for('bestiario'))
 
 if __name__ == '__main__':
     with app.app_context():

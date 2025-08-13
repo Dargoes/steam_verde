@@ -133,6 +133,10 @@ main{
     font-weight: 600;
 }
 
+.maiusculo {
+    text-transform: uppercase;
+}
+
 @media(max-width: 750px){
     .estilo, .habilidade{
         font-size: 0.75em;

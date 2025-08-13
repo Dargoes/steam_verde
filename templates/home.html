@@ -14,9 +14,7 @@
         <section class="criar">
             <p class="title">Criar ficha</p>
             <p class="sub">Crie aqui a ficha do seu personagem</p>
-            <button class="center">
-                <p>Criar</p>
-            </button>
+            <a href="{{ url_for('create_feral') }}" class="bestabtn center">Criar</a>
         </section>
 
 
@@ -85,7 +83,7 @@
                             <p>Utensílio</p>
                             <p>Garfo</p>
 
-                            <a href="/fichapersonagem/index.html" class="fichabtn efeito">Ficha Completa</a>
+                            <a href="{{ url_for('detail_feral', id_feral = listagem.id) }}" class="fichabtn efeito">Ficha Completa</a>
                         </div>
 
                     </div>
@@ -198,7 +196,7 @@
         <section class="mestre">
             <p class="title">Área do mestre</p>
             <p class="sub">Espaço dedicado para o nosso mestre feio e horroroso</p>
-            <a href="/mestre/index.html" class="center">
+            <a href="" class="center">
                 Bosse aqui
             </a>
         </section>

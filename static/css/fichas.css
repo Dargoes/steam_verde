@@ -9,7 +9,7 @@
 .fichascontainer{
     display: flex;
     flex-direction: column;
-    gap: 2.5em;
+    gap: 2em;
     flex-wrap: wrap;
 }
 .fichas{
@@ -120,16 +120,17 @@
 .criar{
     background-color: var(--azul2);
     color: white;
-    padding: 4em;
+    padding: 2em;
     border-radius: 4px;
     white-space: nowrap;
+    box-shadow: 4px 4px 8px 4px rgba(0, 0, 0, 0.2);
 }
 .criar:hover{
     scale: 1.1;
 }
 .criarcontainer{
     width: clamp(375px, 50%, 500px);
-    height: 380px;
+    height: 200px;
     display: flex;
     justify-content: center;
     align-items: center;
