@@ -47,7 +47,7 @@
                     <img src="{{ url_for('static', filename='imagens/besta9.png') }}" alt="">
                     <p>Besta 6</p>
                     <p class="sub">É feito disso e daquilo</p>
-                    <a href="" class="efeito btn">Acessar ficha completa</a>
+                    <a href="{{ url_for('bestiario_detail') }}" class="efeito btn">Acessar ficha completa</a>
                 </div>
 
                 <a href="{{ url_for('bestiario_create') }}"><button class="efeito">Adicionar nova besta</button></a>

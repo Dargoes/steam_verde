@@ -324,9 +324,6 @@ def personagem_detail():
     return render_template('fichapersonagem.html')
 
 
-@app.route('/bestiario')
-def bestiario():
-    return render_template('bestiario.html')
 
 @app.route('/bestiariocreate', methods=['POST', 'GET'])
 def bestiario_create():
@@ -366,9 +363,16 @@ def delete_monstro(id):
         db.session.commit()
     return redirect(url_for('bestiario'))
 
+@app.route('/bestiario-detail')
+def bestiario_detail():
+    return render_template('ficha_bestiario.html')
+
+@app.route('/bestiario')
+def bestiario():
+    return render_template('bestiario.html')
 
 @app.route('/edit/monstro/<int:id>')
-def bestiario_detail():
+def bestiario_edit():
     
     monstro = Monstro.query.filter_by(id=id).first()
 
@@ -384,10 +388,8 @@ def bestiario_detail():
                 db.session.commit()
                 return redirect(url_for('bestiario'))
         
-    return render_template('edit_monstro', monstro=monstro)
+    return render_template('edit_monstro.html', monstro=monstro)
 
-
-    return render_template('ficha_bestiario.html')
 
 
 if __name__ == '__main__':
