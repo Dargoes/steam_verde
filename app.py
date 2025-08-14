@@ -86,6 +86,22 @@ def logout():
     return redirect(url_for('index'))
 
 
+@app.route("/detail/user/<int:id_user>", methods=["GET", "POST"])
+def detail_user(id_user):
+    user = User.query.filter_by(id=id_user).first()
+    return render_template('user_data.html', user=user)
+
+
+@app.route("/edit/user/<int:id_user>", methods=["GET", "POST"])
+def edit_user(id_user):
+    pass
+
+
+@app.route("/delete/user/<int:id_user>", methods=["GET", "POST"])
+def delete_user(id_user):
+    pass
+
+
 @app.route('/fichas')
 @login_required
 def fichas():
