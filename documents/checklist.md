@@ -30,14 +30,14 @@
     - Uso de request para formulários/dados ✅
     - Uso de redirect e url_for ✅
     - Uso de make_response (exemplo: cookies ou headers customizados)
-- Tratamento de erros:
-    - Páginas personalizadas para 404 e 500
+- Tratamento de erros: ✅
+    - Páginas personalizadas para 404 e 500 ✅
 
 
 ### Semana 5 (01/08–13/08)
 - Testes manuais completos ✅
 - Estilização básica com CSS ou Bootstrap ✅
-- Ajustes finais no código
+- Ajustes finais no código ✅
 - README bem elaborado:
     - Instruções para rodar localmente
     - Dependências

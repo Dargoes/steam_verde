@@ -1,4 +1,4 @@
-from flask import render_template, redirect, url_for, request, flash
+from flask import render_template, redirect, url_for, request, flash, abort
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.utils import secure_filename
@@ -54,6 +54,7 @@ def index():
     criar_banco()
     return render_template('index.html')
 
+
 @app.route('/home')
 def home():
     criar_banco()
@@ -76,9 +77,8 @@ def register():
             login_user(user)
             return redirect(url_for('home'))
         
-        flash('ERRO 403! Este usuário já existe.', category='error')
+        abort(403)
         return redirect(url_for('register'))
-
     return render_template("cadastro.html")
 
 
@@ -90,16 +90,15 @@ def login():
 
         validar_user = db.session.execute(db.select(User).filter_by(email=email)).scalar()
         if not validar_user:
-            flash('ERRO 404! Usuário não cadastrado', category='error')
+            abort(404)
             return redirect(url_for('login'))
 
         if validar_user and check_password_hash(validar_user.senha_hash, senha):
             login_user(validar_user)
             return redirect(url_for('home'))
         
-        flash('ERRO 401! Verifique sua senha e tente novamente', category='error')
+        abort(401)
         return redirect(url_for('login'))
-    
     return render_template("login.html")
 
 
@@ -244,8 +243,6 @@ def create_feral():
             habilidade_traco2 = request.form.get("habilidade_traco2")
             estilo_traco2 = request.form.get("estilo_traco2")
 
-
-
             nome_traco3 = request.form.get("nome_traco3")
             custo_traco3 = request.form.get("custo_traco3")
             descricao_traco3 = request.form.get("descricao_traco3")
@@ -279,11 +276,9 @@ def create_feral():
             feral.tracos.append(traco2)
             feral.tracos.append(traco3)
             
-
             db.session.add(feral)
             db.session.commit()
             return redirect(url_for('fichas'))
-
     return render_template('create_feral.html', condicoes=condicoes_existentes)
 
 
@@ -312,14 +307,12 @@ def edit_feral(id_feral):
                 
                 db.session.commit()
                 return redirect(url_for('fichas'))
-        
     return render_template('edit_feral.html', feral=feral)
 
     
 @app.route('/delete/feral/<int:id_feral>', methods=['GET', 'POST'])
 @login_required
 def delete_feral(id_feral):
-
     feral = Feral.query.get(id_feral)
     if feral:
         db.session.delete(feral)
@@ -375,7 +368,6 @@ def bestiario_create():
         db.session.commit()
 
         return redirect(url_for('bestiario'))
-
     return render_template("createbestiario.html") 
     
 
@@ -386,7 +378,6 @@ def bestiario_detail():
 
 @app.route('/bestiario/edit/<int:id>')
 def bestiario_edit():
-    
     monstro = Monstro.query.filter_by(id=id).first()
 
     if request.method == 'POST':
@@ -400,18 +391,32 @@ def bestiario_edit():
 
                 db.session.commit()
                 return redirect(url_for('bestiario'))
-        
     return render_template('edit_monstro.html', monstro=monstro)
 
 
 @app.route('/bestiario/delete/<int:id>', methods=['GET', 'POST'])
 def bestiario_delete(id):
-
     monstro = Monstro.query.get(id)
     if monstro:
         db.session.delete(monstro)
         db.session.commit()
     return redirect(url_for('bestiario'))
+
+
+@app.errorhandler(401)
+def unauthorized(e):
+    return render_template('erro.html', code=401), 401
+
+
+@app.errorhandler(404)
+def not_found(e):
+    return render_template('erro.html', code=404), 404
+
+
+@app.errorhandler(500)
+def internal_server_error(e):
+    return render_template('erro.html', code=500), 500
+
 
 if __name__ == '__main__':
     with app.app_context():
