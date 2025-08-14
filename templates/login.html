@@ -24,6 +24,7 @@
                 <input type="password" name="senha" placeholder="****" required>
 
                 <button type="submit">Entrar</button>
+                <button><a href="{{ url_for('register') }}"> Fazer Cadastro</a></button>
             </form>
         </div>
         {% with messages = get_flashed_messages(with_categories=true) %}

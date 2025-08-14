@@ -19,10 +19,7 @@
         <label>Titulo do feral:</label><br>
         <input type="text" name="titulo" required><br><br>
 
-        <label>Player:</label><br>
-        <input type="text" name="player" required><br><br>
-
-        <label>especialidade:</label><br>
+        <label>Especialidade:</label><br>
         <input type="text" name="especialidade" required><br><br>
 
         <label>Criação:</label><br>
@@ -36,10 +33,12 @@
 
         <label>Conexão:</label><br>
         <textarea name="conexao" required></textarea><br><br>
-        
 
         <label>Imagem:</label><br>
         <input type="file" name="imagem" accept="image/*" required><br><br>
+
+        <label>Vigor:</label><br>
+        <input type="number" name="vigor_max" placeholder="vigor_max" min="1" max='100' required><br><br>
 
         <h3>Condições</h3>
         <div class="condicoes">
@@ -58,7 +57,7 @@
             <input type="text" name="utensilio_nome" placeholder="Nome" required><br>
             <input type="text" name="utensilio_alcance" placeholder="alcance" required><br>
             <input type="text" name="utensilio_quebrado" placeholder="quebrado" required><br>
-            <input type="number" name="utensilio_dur_max" placeholder="duração" required><br>
+            <input type="number" name="utensilio_dur_max" placeholder="durabilidade" required><br>
             <input type="text" name="utensilio_ataques" placeholder="ataques" required><br>
         </div>
 

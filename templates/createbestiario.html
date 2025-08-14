@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}Cadastro{% endblock %}
+{% block title %}Criar Besta{% endblock %}
 
 {% block links %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/create_feral.css') }}">
@@ -9,12 +9,15 @@
 {% block content %}
 
 <main>
-    <h1>Cadastro de Personagem</h1>
+    <h1>Cadastro da Besta</h1>
 
     <form action="{{ url_for('bestiario_create') }}" method="POST" enctype="multipart/form-data">
         
         <label>Nome:</label><br>
         <input type="text" name="nome" required><br><br>
+
+        <label>Imagem:</label><br>
+        <input type="file" name="imagem" accept="image/*" required><br><br>
 
         <label>Categoria:</label><br>
         <input type="text" name="categoria" required><br><br>

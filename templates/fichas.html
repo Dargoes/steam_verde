@@ -12,75 +12,80 @@
             <p class="title">Fichas</p>
             
             <section class="fichas">
-                {% if listagem != [] %}
-                    {% for listagem in listagem %}
-                        
+                {% if listagem %}
+                    {% for filtro in filtro %}
+                        {% for listagem in listagem %}
+                            <div class="ficha">
+                                <div class="top">
+                                    <img src="{{ url_for('static', filename='uploads/' + listagem.imagem_url) }}" alt="Imagem do personagem" width="300">
                     
-                    <div class="ficha">
-                        <div class="top">
-                            <img src="{{ url_for('static', filename='uploads/' + listagem.imagem_url) }}" alt="Imagem do personagem" width="300">
-            
-                            <div class="direita">
-                                <div class="nome">
-                                    <p>{{listagem.nome}}</p>
-                                </div>
-                                <div class="status">
-                                    <div class="stat">
-                                        <p>Vigor</p>
-                                        <div class="vigorbarra">
-                                            <span>100 / 100</span>
+                                    <div class="direita">
+                                        <div class="nome">
+                                            <p>{{listagem.nome}}</p>
                                         </div>
+
+                                        <div class="status">
+                                            <div class="stat">
+                                                <p>Vigor</p>
+                                                <div class="vigorbarra">
+                                                    <span>{{listagem.vigor_atual}} / {{listagem.vigor_maximo}}</span>
+                                                </div>
+                                            </div>
+                                            <div class="stat">
+                                                <p>Durabilidade</p>
+                                                <div class="durabarra">
+                                                    <span>100 / 100</span>
+                                                </div>
+                                            </div>
+                                        </div> 
                                     </div>
-                                    <div class="stat">
-                                        <p>Durabilidade</p>
-                                        <div class="durabarra">
-                                            <span>100 / 100</span>
-                                        </div>
+                                </div>
+
+                                <div class="mid">
+                                    <div class="pontos">
+                                        <p>Pod</p>
+                                        <p>{{listagem.estilo.poderoso}}</p>
                                     </div>
-            
+                                    <div class="pontos">
+                                        <p>Pre</p>
+                                        <p>{{listagem.estilo.preciso}}</p>
+                                    </div>
+                                    <div class="pontos">
+                                        <p>Lig</p>
+                                        <p>{{listagem.estilo.ligeiro}}</p>
+                                    </div>
+                                    <div class="pontos">
+                                        <p>Sag</p>
+                                        <p>{{listagem.estilo.sagaz}}</p>
+                                    </div>
+                                </div>
+
+                                <div class="bottom">
+                                    <div class="especialidade">
+                                        <p>Especialidade</p>
+                                        <p>{{listagem.especialidade}}</p>
+                                    </div>
+
+                                    <div class="utensilio">
+                                        <p>Utensílio</p>
+                                        <p>{{listagem.utensilios[0].nome}}</p>
+                                        <a href="{{ url_for('detail_feral', id_feral = listagem.id) }}" class="fichabtn efeito">Ficha Completa</a>
+                                        {% if listagem.player == filtro.nome %}
+                                                <a href="{{ url_for('edit_feral', id_feral = listagem.id) }}" class="fichabtn efeito">Editar Ficha</a>
+                                                <a href="{{ url_for('delete_feral', id_feral = listagem.id) }}" class="fichabtn efeito">Deletar Ficha</a>
+                                        {% endif %}
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="mid">
-                            <div class="pontos">
-                                <p>Pod</p>
-                                <p>{{listagem.estilo.poderoso}}</p>
-                            </div>
-                            <div class="pontos">
-                                <p>Pre</p>
-                                <p>{{listagem.estilo.preciso}}</p>
-                            </div>
-                            <div class="pontos">
-                                <p>Lig</p>
-                                <p>{{listagem.estilo.ligeiro}}</p>
-                            </div>
-                            <div class="pontos">
-                                <p>Sag</p>
-                                <p>{{listagem.estilo.sagaz}}</p>
-                            </div>
-                        </div>
-                        <div class="bottom">
-                            <div class="especialidade">
-                                <p>Especialidade</p>
-                                <p>{{listagem.especialidade}}</p>
-                            </div>
-                            <div class="utensilio">
-                                <p>Utensílio</p>
-                                <p>{{listagem.utensilios[0].nome}}</p>
-                                <a href="{{ url_for('detail_feral', id_feral = listagem.id) }}" class="fichabtn efeito">Ficha Completa</a>
-                                <a href="{{ url_for('edit_feral', id_feral = listagem.id) }}" class="fichabtn efeito">Editar Ficha</a>
-                                <a href="{{ url_for('delete_feral', id_feral = listagem.id) }}" class="fichabtn efeito">Deletar Ficha</a>
-                            </div>
-                        </div>
-                    </div>
+                        {% endfor %}
                     {% endfor %}
                 {% else %}
-                    <h1>vaziu</h1>
+                    <h1>Ainda não há personagens </h1>
                 {% endif %}
                 
 
                 <div class="criarcontainer">
-                    <a href="{{ url_for('create_feral') }}" class="criar center">Criar Nova</a>
+                    <a href="{{ url_for('create_feral') }}" class="criar center">Criar Personagem</a>
                 </div>
             </section>
         </section>

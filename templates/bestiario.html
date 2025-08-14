@@ -16,7 +16,7 @@
                 {% if listagem != [] %}
                     {% for monstro in listagem %}
                         <div class="besta">
-                            <img src="{{ url_for('static', filename='uploads/' + 'monstro.imagem_url') }}" alt="">
+                            <img src="{{ url_for('static', filename='uploads/' + monstro.imagem_url) }}" alt="">
                             <p>{{ monstro.nome }}</p>
                             <p class="sub">{{ monstro.descricao }}</p>
                             <a href="{{ url_for('bestiario_detail') }}" class="efeito btn">Acessar ficha completa</a>
