@@ -34,11 +34,11 @@
         </div>
 
         <section class="utensilio">
-            <p id="bule">Bule</p>
+            <p id="bule">{{ feral.utensilios[0].nome }}</p>
 
             <div class="descContainer">
                 <p class="descTitulo">Informações:</p>
-                <p>Alcance: 1 (Golpear)</p>
+                <p>Alcance: {{ feral.utensilios[0].alcance }}</p>
                 <p>Se quebrado: Alcance 1 (Golpear). Essa Parte dá metade do dano.</p>
                 <p>Durabilidade:</p>
                 <span id="durabilidade" class="center">100 / 100</span>
@@ -46,8 +46,9 @@
 
             <div class="descContainer">
                 <p class="descTitulo">Ataques:</p>
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reprehenderit rerum quos ab, quibusdam autem nam exercitationem facilis labore architecto quod nihil consectetur corporis porro sint sed in tenetur, quas minima.</p>
-                <p>lorem</p>
+                {% for ataque in feral.utensilios %}
+                    <p>{{ ataque.ataques }}</p>
+                {% endfor %}
             </div>
         </section>
 

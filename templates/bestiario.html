@@ -13,42 +13,17 @@
             <p class="title">Bestiário</p>
             <p class="sub">Todas as informações sobre as bestas do mundo Wilderfeast</p>
             <div class="bestas">
-                <div class="besta">
-                    <img src="{{ url_for('static', filename='imagens/besta3.png') }}" alt="">
-                    <p>Besta 1</p>
-                    <p class="sub">Faz isso e aquilo</p>
-                    <a href="{{ url_for('bestiario_detail') }}" class="efeito btn">Acessar ficha completa</a>
-                </div>
-                <div class="besta">
-                    <img src="{{ url_for('static', filename='imagens/besta4.png') }}" alt="">
-                    <p>Besta 2</p>
-                    <p class="sub">É feito disso e daquilo</p>
-                    <a href="{{ url_for('bestiario_detail') }}" class="efeito btn">Acessar ficha completa</a>
-                </div>
-                <div class="besta">
-                    <img src="{{ url_for('static', filename='imagens/besta6.png') }}" alt="">
-                    <p>Besta 3</p>
-                    <p class="sub">É feito disso e daquilo</p>
-                    <a href="{{ url_for('bestiario_detail') }}" class="efeito btn">Acessar ficha completa</a>
-                </div>
-                <div class="besta">
-                    <img src="{{ url_for('static', filename='imagens/besta7.png') }}" alt="">
-                    <p>Besta 4</p>
-                    <p class="sub">É feito disso e daquilo</p>
-                    <a href="{{ url_for('bestiario_detail') }}" class="efeito btn">Acessar ficha completa</a>
-                </div>
-                <div class="besta">
-                    <img src="{{ url_for('static', filename='imagens/besta8.png') }}" alt="">
-                    <p>Besta 5</p>
-                    <p class="sub">É feito disso e daquilo</p>
-                    <a href="{{ url_for('bestiario_detail') }}" class="efeito btn">Acessar ficha completa</a>
-                </div>
-                <div class="besta">
-                    <img src="{{ url_for('static', filename='imagens/besta9.png') }}" alt="">
-                    <p>Besta 6</p>
-                    <p class="sub">É feito disso e daquilo</p>
-                    <a href="{{ url_for('bestiario_detail') }}" class="efeito btn">Acessar ficha completa</a>
-                </div>
+                {% if listagem != [] %}
+                    {% for monstro in listagem %}
+                        <div class="besta">
+                            <img src="{{ url_for('static', filename='uploads/' + 'monstro.imagem_url') }}" alt="">
+                            <p>{{ monstro.nome }}</p>
+                            <p class="sub">{{ monstro.descricao }}</p>
+                            <a href="{{ url_for('bestiario_detail') }}" class="efeito btn">Acessar ficha completa</a>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+                
 
                 <a href="{{ url_for('bestiario_create') }}"><button class="efeito">Adicionar nova besta</button></a>
             </div>

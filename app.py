@@ -327,7 +327,8 @@ def dados():
 
 @app.route('/bestiario')
 def bestiario():
-    return render_template('bestiario.html')
+    monstros = Monstro.query.all()
+    return render_template('bestiario.html', listagem=monstros)
 
 @app.route('/bestiario/create', methods=['POST', 'GET'])
 def bestiario_create():

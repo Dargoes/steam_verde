@@ -27,11 +27,11 @@
                 <div class="ficha">
 
                     <div class="top">
-                        <img src="{{ url_for('static', filename='imagens/besta.png') }}" alt="Foto da criatura">
+                        <img src="{{ url_for('static', filename='uploads/' + listagem[0].imagem_url) }}" alt="Foto da criatura">
                         
                         <div class="direita">
                             <div class="nome">
-                                <p>Gata Samurai</p>
+                                <p>{{ listagem[0].nome }}</p>
                             </div>
 
                             <div class="status">
@@ -56,19 +56,19 @@
                     <div class="mid">
                         <div class="pontos">
                             <p>Pod</p>
-                            <p>+1</p>
+                            <p>+{{ listagem[0].estilo.poderoso }}</p>
                         </div>
                         <div class="pontos">
                             <p>Pre</p>
-                            <p>+1</p>
+                            <p>+{{ listagem[0].estilo.preciso }}</p>
                         </div>
                         <div class="pontos">
                             <p>Lig</p>
-                            <p>+1</p>
+                            <p>+{{ listagem[0].estilo.ligeiro }}</p>
                         </div>
                         <div class="pontos">
                             <p>Sag</p>
-                            <p>+1</p>
+                            <p>+{{ listagem[0].estilo.sagaz }}</p>
                         </div>
                     </div>
 
@@ -76,14 +76,14 @@
 
                         <div class="especialidade">
                             <p>Especialidade</p>
-                            <p>Açougueiro</p>
+                            <p>{{ listagem[0].especialidade }}</p>
                         </div>
 
                         <div class="utensilio">
                             <p>Utensílio</p>
-                            <p>Garfo</p>
+                            <p>{{ listagem[0].utensilios[0].nome }}</p>
 
-                            <a href="{{ url_for('detail_feral', id_feral = listagem.id) }}" class="fichabtn efeito">Ficha Completa</a>
+                            <a href="{{ url_for('detail_feral', id_feral = listagem[0].id) }}" class="fichabtn efeito">Ficha Completa</a>
                         </div>
 
                     </div>
@@ -93,11 +93,11 @@
                 <div class="ficha">
 
                     <div class="top">
-                        <img src="{{ url_for('static', filename='imagens/besta2.png') }}" alt="Foto da criatura">
+                        <img src="{{ url_for('static', filename='uploads/' + listagem[1].imagem_url) }}" alt="Foto da criatura">
                         
                         <div class="direita">
                             <div class="nome">
-                                <p>Nome</p>
+                                <p>{{ listagem[1].nome }}</p>
                             </div>
 
                             <div class="status">
@@ -122,19 +122,19 @@
                     <div class="mid">
                         <div class="pontos">
                             <p>Pod</p>
-                            <p>+1</p>
+                            <p>+{{ listagem[1].estilo.poderoso }}</p>
                         </div>
                         <div class="pontos">
                             <p>Pre</p>
-                            <p>+1</p>
+                            <p>+{{ listagem[1].estilo.preciso }}</p>
                         </div>
                         <div class="pontos">
                             <p>Lig</p>
-                            <p>+1</p>
+                            <p>+{{ listagem[1].estilo.ligeiro }}</p>
                         </div>
                         <div class="pontos">
                             <p>Sag</p>
-                            <p>+1</p>
+                            <p>+{{ listagem[1].estilo.sagaz }}</p>
                         </div>
                     </div>
 
@@ -142,14 +142,14 @@
 
                         <div class="especialidade">
                             <p>Especialidade</p>
-                            <p>Pivoteiro</p>
+                            <p>{{ listagem[1].especialidade }}</p>
                         </div>
 
                         <div class="utensilio">
                             <p>Utensílio</p>
-                            <p>Luva</p>
+                            <p>{{ listagem[1].utensilios[0].nome }}</p>
 
-                            <a href="/fichapersonagem/index.html" class="fichabtn efeito">Ficha Completa</a>
+                            <a href="{{ url_for('detail_feral', id_feral = listagem[1].id) }}" class="fichabtn efeito">Ficha Completa</a>
                         </div>
 
                     </div>
