@@ -17,26 +17,26 @@
 
 
 ### Semana 3 (18/07–24/07)
-- Implementar CRUD do recurso escolhido:
-    - Criar
-    - Listar
-    - Editar
-    - Excluir
-- Restrição de acesso: cada usuário só pode ver/editar/excluir seus dados
+- Implementar CRUD do recurso escolhido: ✅
+    - Criar ✅
+    - Listar ✅
+    - Editar ✅
+    - Excluir ✅
+- Restrição de acesso: cada usuário só pode ver/editar/excluir seus dados 
 
 
 ### Semana 4 (25/07–31/07)
-- Uso refinado de Flask:
-    - Uso de request para formulários/dados
-    - Uso de redirect e url_for
+- Uso refinado de Flask: ✅
+    - Uso de request para formulários/dados ✅
+    - Uso de redirect e url_for ✅
     - Uso de make_response (exemplo: cookies ou headers customizados)
 - Tratamento de erros:
     - Páginas personalizadas para 404 e 500
 
 
 ### Semana 5 (01/08–13/08)
-- Testes manuais completos
-- Estilização básica com CSS ou Bootstrap
+- Testes manuais completos ✅
+- Estilização básica com CSS ou Bootstrap ✅
 - Ajustes finais no código
 - README bem elaborado:
     - Instruções para rodar localmente
