@@ -84,11 +84,11 @@
                                 </div>
                             </div>
                         </div>
+                        {% endfor %}
                         <a href="{{ url_for('fichas') }}" class="acessar center">
                             Acessar restante
                         </a>
-                {% endfor %}
-                {% else %}
+                        {% else %}
                     <h1>Ainda não há fichas</h1>
                 {% endif %}
             </section>
