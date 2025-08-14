@@ -114,7 +114,6 @@ def criar_personagens_exemplo():
         tesouro_feral.tracos.append(tesouro_traco4)
 
         db.session.add(tesouro_feral)
-    db.session.commit()
 
     # Besouro
     besouro_feral = Feral(
@@ -204,5 +203,5 @@ def criar_personagens_exemplo():
         besouro_feral.tracos.append(besouro_traco3)
         besouro_feral.tracos.append(besouro_traco4)
 
-        db.session.add(tesouro_feral)
+        db.session.add(besouro_feral)
     db.session.commit()
