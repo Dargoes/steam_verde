@@ -1,8 +1,9 @@
-from flask import render_template, redirect, url_for, request, flash, abort
+from flask import render_template, redirect, url_for, request, flash
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.utils import secure_filename
 from database import *
+from inserts import *
 import os
 
 app.secret_key = 'Romerito-Senpai'
@@ -12,30 +13,6 @@ login_manager.init_app(app)
 
 db.init_app(app)
 
-
-def criar_condicoes_padrao():
-    condicoes = [
-        ("Amedrontado"),
-        ("Atordoado"),
-        ("Confuso"),
-        ("Descansado"),
-        ("Dissonante"),
-        ("Envenenado"),
-        ("Escondido"),
-        ("Expandido"),
-        ("Exposto"),
-        ("Fadigado"),
-        ("Ferido"),
-        ("Preso"),
-        ("Queimado"),
-        ("Revigorado"),
-    ]
-
-    for nome in condicoes:
-        if not Condicao.query.filter_by(nome=nome).first():
-            nova = Condicao(nome=nome)
-            db.session.add(nova)
-    db.session.commit()
 
 def criar_banco():
     with app.app_context():
@@ -77,7 +54,7 @@ def register():
             login_user(user)
             return redirect(url_for('home'))
         
-        abort(403)
+        flash('ERRO 403! Este usuário já existe.', category='error')
         return redirect(url_for('register'))
     return render_template("cadastro.html")
 
@@ -90,14 +67,14 @@ def login():
 
         validar_user = db.session.execute(db.select(User).filter_by(email=email)).scalar()
         if not validar_user:
-            abort(404)
+            flash('ERRO 404! Usuário não cadastrado', category='error')
             return redirect(url_for('login'))
 
         if validar_user and check_password_hash(validar_user.senha_hash, senha):
             login_user(validar_user)
             return redirect(url_for('home'))
         
-        abort(401)
+        flash('ERRO 401! Verifique sua senha e tente novamente', category='error')
         return redirect(url_for('login'))
     return render_template("login.html")
 
@@ -117,6 +94,11 @@ def fichas():
         print(filtro)
         listagem = Feral.query.all()
         return render_template('fichas.html', listagem=listagem, filtro=filtro)
+    
+
+@app.route('/dados')
+def dados():
+    return render_template('dados.html')
 
 
 @app.route('/create/feral', methods=['GET', 'POST'])
@@ -320,18 +302,13 @@ def delete_feral(id_feral):
     return redirect(url_for('fichas'))
 
 
-@app.route('/dados')
-def dados():
-    return render_template('dados.html')
-
-
 @app.route('/bestiario')
 def bestiario():
     monstros = Monstro.query.all()
     return render_template('bestiario.html', listagem=monstros)
 
 
-@app.route('/bestiario/create', methods=['POST', 'GET'])
+@app.route('/create/bestiario', methods=['POST', 'GET'])
 def bestiario_create():
     if request.method == 'POST':
 
@@ -371,12 +348,12 @@ def bestiario_create():
     return render_template("createbestiario.html") 
     
 
-@app.route('/bestiario/detail')
+@app.route('/detail/bestiario/')
 def bestiario_detail():
     return render_template('ficha_bestiario.html')
 
 
-@app.route('/bestiario/edit/<int:id>')
+@app.route('/edit/bestiario/<int:id>')
 def bestiario_edit():
     monstro = Monstro.query.filter_by(id=id).first()
 
@@ -394,7 +371,7 @@ def bestiario_edit():
     return render_template('edit_monstro.html', monstro=monstro)
 
 
-@app.route('/bestiario/delete/<int:id>', methods=['GET', 'POST'])
+@app.route('/delete/bestiario/<int:id>', methods=['GET', 'POST'])
 def bestiario_delete(id):
     monstro = Monstro.query.get(id)
     if monstro:
@@ -422,4 +399,5 @@ if __name__ == '__main__':
     with app.app_context():
         db.create_all()
         criar_condicoes_padrao()
+        criar_personagens_exemplo()
     app.run(debug=True)
