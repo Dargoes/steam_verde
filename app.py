@@ -36,7 +36,8 @@ def index():
 def home():
     criar_banco()
     ferais = Feral.query.limit(2).all()
-    return render_template('home.html', listagem=ferais)
+    monstro = Monstro.query.limit(2).all()
+    return render_template('home.html', listagem=ferais, listagem2=monstro)
 
 
 @app.route("/register", methods=["GET", "POST"])

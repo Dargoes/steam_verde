@@ -94,19 +94,13 @@
             <p class="sub">Todas as informações sobre as bestas do mundo Wilderfeast</p>
 
             <div class="bestas">
-
-                <div class="besta">
-                    <img src="{{ url_for('static', filename='imagens/besta3.png') }}" alt="">
-                    <p>Besta 1</p>
-                    <p class="sub">Faz isso e aquilo</p>
-                </div>
-
-                <div class="besta">
-                    <img src="{{ url_for('static', filename='imagens/besta4.png') }}" alt="">
-                    <p>Besta 2</p>
-                    <p class="sub">É feito disso e daquilo</p>
-                </div>
-
+                {% for listagem2 in listagem2 %}
+                    <div class="besta">
+                        <img src="{{ url_for('static', filename='uploads/' + listagem2.imagem_url) }}" alt="">
+                        <p>{{listagem2.nome}}</p>
+                        <p class="sub">{{listagem2.descricao}}</p>
+                    </div>
+                {% endfor %}
                 <div class="besta" id="bestadesc">
                     <p>Para ter acesso ao bestiário completo, seja redirecionado para a página clicando no botão</p>
                     <a href="{{ url_for('bestiario') }}" class="bestabtn center">Clique aqui</a>
@@ -118,7 +112,7 @@
             <p class="title">Área do mestre</p>
             <p class="sub">Espaço dedicado para o nosso mestre feio e horroroso</p>
             <a href="" class="center">
-                Bosse aqui
+                Entre aqui
             </a>
         </section>
     </main>
