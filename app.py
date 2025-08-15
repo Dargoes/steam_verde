@@ -348,9 +348,10 @@ def bestiario_create():
     return render_template("createbestiario.html") 
     
 
-@app.route('/detail/bestiario/')
-def bestiario_detail():
-    return render_template('ficha_bestiario.html')
+@app.route('/detail/bestiario/<int:id_besta>')
+def bestiario_detail(id_besta):
+    besta = Monstro.query.filter_by(id=id_besta).first()
+    return render_template('ficha_bestiario.html', besta=besta)
 
 
 @app.route('/edit/bestiario/<int:id>')

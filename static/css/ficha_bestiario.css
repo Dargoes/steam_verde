@@ -82,7 +82,7 @@ main{
     width: fit-content;
 }
 #durabtitulo{
-    font-size: 0.75em;
+    font-size: 1.0em;
 }
 .durabValores{
     display: grid;
@@ -91,6 +91,7 @@ main{
     font-size: 1.5em;
 }
 .durabValores p:nth-child(2){
+    padding: 8px;
     border-left: 2px dashed rgba(255, 255, 255, 0.8);
     border-right: 2px dashed rgba(255, 255, 255, 0.8);
 }

@@ -22,7 +22,7 @@
     - Listar ✅
     - Editar ✅
     - Excluir ✅
-- Restrição de acesso: cada usuário só pode ver/editar/excluir seus dados 
+- Restrição de acesso: cada usuário só pode ver/editar/excluir seus dados ✅
 
 
 ### Semana 4 (25/07–31/07)
@@ -39,7 +39,7 @@
 - Estilização básica com CSS ou Bootstrap ✅
 - Ajustes finais no código ✅
 - README bem elaborado:
-    - Instruções para rodar localmente
-    - Dependências
-    - Screenshots ou gifs opcionais
-- Revisão final e entrega no GitHub
+    - Instruções para rodar localmente ✅
+    - Dependências ✅
+    - Screenshots ou gifs opcionais ✅
+- Revisão final e entrega no GitHub ✅

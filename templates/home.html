@@ -10,20 +10,16 @@
 
 {% block content %}
     <main>
-
         <section class="criar">
             <p class="title">Criar ficha</p>
             <p class="sub">Crie aqui a ficha do seu personagem</p>
             <a href="{{ url_for('create_feral') }}" class="bestabtn center">Criar</a>
         </section>
 
-
-
         <section class="fichascontainer">
             <p class="title">Fichas criadas</p>
 
             <section class="fichas">
-
                 {% if listagem %}
                     {% for listagem in listagem %}
                         <div class="ficha">
@@ -84,18 +80,13 @@
                                 </div>
                             </div>
                         </div>
-                        {% endfor %}
-                        <a href="{{ url_for('fichas') }}" class="acessar center">
-                            Acessar restante
-                        </a>
-                        {% else %}
+                    {% endfor %}
+                {% else %}
                     <h1>Ainda não há fichas</h1>
                 {% endif %}
+                <a href="{{ url_for('fichas') }}" class="acessar center">Acessar restante</a>
             </section>
         </section>
-
-
-
 
         <section class="bestiario">
 
@@ -122,8 +113,6 @@
                 </div>
             </div>  
         </section>
-
-
 
         <section class="mestre">
             <p class="title">Área do mestre</p>
