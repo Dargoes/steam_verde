@@ -43,42 +43,42 @@ py app.py
 # Estruturação do site
 ## 1. Página inicial
 
-![alt text](referencias readme/Pagina_inicial.png)
+![alt text](referencias_readme/Pagina_inicial.png)
 
 A página inicial apresenta links que referenciam as rotas de registro e de login que cadastram os dados do usuário no banco e consultam os dados respectivamente.
 
 ## 2. Página do usuário
 
-![Pagina_usuario](referencias readme/Pagina_usuario.png)
-![Pagina_usuario](referencias readme/Pagina_usuario2.png)
+![Pagina_usuario](referencias_readme/Pagina_usuario.png)
+![Pagina_usuario](referencias_readme/Pagina_usuario2.png)
 
 
 A página do usuário é retornada logo após o login e funciona como uma ponte para as outras páginas do projeto que são dados, fichas e bestiário. Além disso ela também consta com o logout do usuário e sessões de criar ficha de personagem, fichas já criadas e uma fração do bestiário e dos personagens
 
 ## 3. fichas de personagem
 
-![Ficha_personagem](referencias readme/Ficha_personagem2.png)
+![Ficha_personagem](referencias_readme/Ficha_personagem2.png)
 
 
 Através das respostas dadas nos formulários de criação de personagens as rotas do python guardam as informações no banco de dados e mostram os personagens de forma organizada dentro da página.
 
 ## 4. bestiário
 
-![Bestario](referencias readme/Bestario1.png)
+![Bestario](referencias_readme/Bestiario1.png)
 
 
 De forma semelhante a página de personagens, o bestiário exibe as bestas já cadastradas os respectivos atributos de cada fera.
 
 ## 5. dados
 
-![dados](referencias readme/dados.png)
-![dados](referencias readme/dados2.png)
+![dados](referencias_readme/dados.png)
+![dados](referencias_readme/dados2.png)
 
 Com o javascript é possível criar funções que fazem uma rolagem de dados de diversos tipos de forma aleatória, muito semelhante à vida real.
 
 
 ## Páginas de registro
 
-![Ficha_besta](referencias readme\Ficha_besta.png)
-![Ficha_personagem](referencias readme\Ficha_personagem1.png)
+![Ficha_besta](referencias_readme\Ficha_besta.png)
+![Ficha_personagem](referencias_readme\Ficha_personagem1.png)
 Estas são as páginas em que o usuário pode colocar cada dado do seu personagem ou fera e submeter ao registro para ser exibida posteriormente na página do usuário e fichas, caso seja um personagem ou bestiário, caso seja uma fera.
