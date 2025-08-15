@@ -79,6 +79,6 @@ Com o javascript é possível criar funções que fazem uma rolagem de dados de 
 
 ## Páginas de registro
 
-![Ficha_besta](referencias_readme\Ficha_besta.png)
-![Ficha_personagem](referencias_readme\Ficha_personagem1.png)
+![Ficha_besta](referencias_readme/Ficha_besta.png)
+![Ficha_personagem](referencias_readme/Ficha_personagem1.png)
 Estas são as páginas em que o usuário pode colocar cada dado do seu personagem ou fera e submeter ao registro para ser exibida posteriormente na página do usuário e fichas, caso seja um personagem ou bestiário, caso seja uma fera.
