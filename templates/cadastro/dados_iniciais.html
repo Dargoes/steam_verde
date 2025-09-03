@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}Cadastro{% endblock %}
+
+{% block links %}
+<!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/create_feral.css') }}"> -->
+<link rel="stylesheet" href="../../static/css/main.css">
+<link rel="stylesheet" href="../../static/css/dados_iniciais.css">
+{% endblock %}
+
+{% block content %}
+<main>
+    <form action="" method="post">
+        <h1>1. Escolha seu estilo</h1>
+        <div class="stats">
+            <div>
+                <p>LIGEIRO</p>
+                <input type="number" min="1" required>
+            </div>
+
+            <div>
+                <p>PODEROSO</p>
+                <input type="number" min="1" required>
+            </div>
+
+            <div>
+                <p>PRECISO</p> 
+                <input type="number" min="1" required>
+            </div>
+
+            <div>
+                <p>SAGAZ </p>
+                <input type="number" min="1" required>
+            </div>
+        </div>
+    </form>
+</main>
+{% endblock %}

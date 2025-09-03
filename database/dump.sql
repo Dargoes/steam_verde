@@ -1,10 +1,18 @@
 -- Personagens
 CREATE TABLE feral (
     id SERIAL PRIMARY KEY,
-    nome VARCHAR(100) NOT NULL,
-    titulo VARCHAR(100) NOT NULL,
-    player VARCHAR(100) NOT NULL,
+    nome TEXT NOT NULL,
+    titulo TEXT NOT NULL,
+    player TEXT NOT NULL,
+	especialidade TEXT NOT NULL,
     imagem_url TEXT NOT NULL,
+	vigor_max INT NOT NULL,
+	vigor_atual INT NOT NULL,
+	voce_e VARCHAR(100),
+	tenta_ser VARCHAR(100),
+	feras_familiares TEXT,
+	prato_tipico VARCHAR(50),
+	tempero_tipico VARCHAR(50),
     criacao TEXT NOT NULL,
     iniciacao TEXT NOT NULL,
     ambicao TEXT NOT NULL,
@@ -27,25 +35,32 @@ CREATE TABLE feral_condicao (
 CREATE TABLE utensilio (
     id SERIAL PRIMARY KEY,
     feral_id INTEGER REFERENCES feral(id) ON DELETE CASCADE,
-    nome VARCHAR(50) NOT NULL,
+    nome TEXT NOT NULL,
     alcance VARCHAR(50) NOT NULL,
     se_quebrado TEXT NOT NULL,
     durabilidade_atual INT NOT NULL,
-    durabilidade_maxima INT NOT NULL,
-    ataques TEXT
+    durabilidade_maxima INT NOT NULL
 );
 
--- Estilos
+CREATE TABLE ataques_utensilio (
+	id SERIAL PRIMARY KEY,
+	nome TEXT NOT NULL,
+	custo TEXT NOT NULL,
+	descricao TEXT NOT NULL,
+	utensilio_id INTEGER REFERENCES utensilio(id) ON DELETE CASCADE
+);
+
+-- Feral Estilos
 CREATE TABLE feral_estilo (
     feral_id INTEGER REFERENCES feral(id) ON DELETE CASCADE,
     ligeiro INT NOT NULL,
     poderoso INT NOT NULL,
     preciso INT NOT NULL,
     sagaz INT NOT NULL,
-    PRIMARY KEY (feral_id, estilo_id)
+    PRIMARY KEY (feral_id)
 );
 
--- Habilidades
+-- Feral Habilidades
 CREATE TABLE feral_habilidade (
     feral_id INTEGER REFERENCES feral(id) ON DELETE CASCADE,
     agarrar INT NOT NULL,
@@ -60,13 +75,26 @@ CREATE TABLE feral_habilidade (
     chamar INT NOT NULL,
     exibir INT NOT NULL,
     procurar INT NOT NULL,
-    PRIMARY KEY (feral_id, habilidade_id)
+    PRIMARY KEY (feral_id)
+);
+
+-- Monstros
+CREATE TABLE monstro (
+    id SERIAL PRIMARY KEY,
+    nome TEXT NOT NULL,
+    categoria VARCHAR(20) CHECK (categoria IN ('Jovem','Adulto','Apex')),
+    vigor_base INT NOT NULL,
+    vigor_atual INT NOT NULL,
+    historia TEXT NOT NULL,
+    alvos TEXT NOT NULL,
+	dieta TEXT NOT NULL,
+	habitat TEXT NOT NULL
 );
 
 -- Traços
-CREATE TABLE traco (
+CREATE TABLE traco_feral (
     id SERIAL PRIMARY KEY,
-    feral_id INTEGER REFERENCES feral(id) ON DELETE CASCADE,
+	feral_id INTEGER REFERENCES feral(id) ON DELETE CASCADE,
     nome VARCHAR(100) NOT NULL,
     custo VARCHAR(50) NOT NULL,
     descricao TEXT NOT NULL,
@@ -74,6 +102,27 @@ CREATE TABLE traco (
     estilo_relacionado VARCHAR(50) NOT NULL
 );
 
+-- Traços
+CREATE TABLE traco_monstro (
+    id SERIAL PRIMARY KEY,
+	monstro_id INTEGER REFERENCES monstro(id) ON DELETE CASCADE,
+    nome VARCHAR(100) NOT NULL,
+    custo VARCHAR(50) NOT NULL,
+    descricao TEXT NOT NULL,
+    habilidade_relacionada VARCHAR(50) NOT NULL,
+    estilo_relacionado VARCHAR(50) NOT NULL
+);
+
+-- Partes dos monstros
+CREATE TABLE parte (
+    id SERIAL PRIMARY KEY,
+    monstro_id INTEGER REFERENCES monstro(id) ON DELETE CASCADE,
+    nome VARCHAR(50) NOT NULL,
+    alcance VARCHAR(50) NOT NULL,
+    se_quebrado TEXT NOT NULL,
+    durabilidade_atual INT NOT NULL,
+    durabilidade_maxima INT NOT NULL
+);
 
 -- Estilos
 CREATE TABLE monstro_estilo (
@@ -82,7 +131,7 @@ CREATE TABLE monstro_estilo (
     poderoso INT NOT NULL,
     preciso INT NOT NULL,
     sagaz INT NOT NULL,
-    PRIMARY KEY (monstro_id, estilo_id)
+    PRIMARY KEY (monstro_id)
 );
 
 -- Habilidades
@@ -100,28 +149,5 @@ CREATE TABLE monstro_habilidade (
     chamar INT NOT NULL,
     exibir INT NOT NULL,
     procurar INT NOT NULL,
-    PRIMARY KEY (monstro_id, habilidade_id)
-);
-
--- Monstros
-CREATE TABLE monstro (
-    id SERIAL PRIMARY KEY,
-    nome VARCHAR(100) NOT NULL,
-    categoria VARCHAR(20) CHECK (categoria IN ('Jovem','Adulto','Apex')),
-    resistencia_base INT NOT NULL,
-    resistencia_atual INT NOT NULL
-    partes INT NOT NULL,
-    max_partes INT NOT NULL,
-    descricao TEXT,
-    alvos TEXT NOT NULL,
-    acoes TEXT NOT NULL
-);
-
--- Partes dos monstros
-CREATE TABLE parte (
-    id SERIAL PRIMARY KEY,
-    monstro_id INT NOT NULL REFERENCES monstro(id) ON DELETE CASCADE,
-    nome VARCHAR(100) NOT NULL,
-    quantidade INT NOT NULL,
-    modificador_max INT
+    PRIMARY KEY (monstro_id)
 );

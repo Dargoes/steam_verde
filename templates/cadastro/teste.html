@@ -1,0 +1,149 @@
+{% extends 'base.html' %}
+
+{% block title %}Cadastro{% endblock %}
+
+{% block links %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/dados_iniciais.css') }}">
+{% endblock %}
+
+{% block content %}
+<main>
+    <h1>Cadastro de Personagem</h1>
+
+    <nav class="form-nav">
+        <a data-target="0" class="active">Dados</a>
+        <a data-target="1">Condições</a>
+        <a data-target="2">Utensílios</a>
+        <a data-target="3">Estilo</a>
+        <a data-target="4">Habilidades</a>
+        <a data-target="5">Traços</a>
+    </nav>
+
+    <div class="form-viewport">
+        <div class="form-container" id="formContainer">
+            <!-- Sessão 0: Dados -->
+            <section class="active">
+                <label>Nome:</label><br>
+                <input type="text" name="nome" required><br>
+                <label>Titulo do feral:</label><br>
+                <input type="text" name="titulo" required><br>
+                <label>Especialidade:</label><br>
+                <input type="text" name="especialidade" required><br>
+                <label>Criação:</label><br>
+                <textarea name="criacao" required></textarea><br>
+                <label>Iniciação:</label><br>
+                <textarea name="iniciacao" required></textarea><br>
+                <label>Ambição:</label><br>
+                <textarea name="ambicao" required></textarea><br>
+                <label>Conexão:</label><br>
+                <textarea name="conexao" required></textarea><br>
+                <label>Imagem:</label><br>
+                <input type="file" name="imagem" accept="image/*" required><br>
+                <label>Vigor:</label><br>
+                <input type="number" name="vigor_max" placeholder="vigor_max" min="1" max='100' required><br>
+            </section>
+
+            <!-- Sessão 1: Condições -->
+            <section>
+                <h3>Condições</h3>
+                <div class="condicoes">
+                {% for cond in condicoes %}
+                    <div class="condicoes_check">
+                        <label>
+                            <input type="checkbox" name="condicoes" value="{{ cond.id }}"> {{ cond.nome }}
+                        </label>
+                    </div>
+                {% endfor %}
+                </div>
+            </section>
+
+            <!-- Sessão 2: Utensílios -->
+            <section>
+                <h3>Utensílios</h3>
+                <input type="text" name="utensilio_nome" placeholder="Nome" required><br>
+                <input type="text" name="utensilio_alcance" placeholder="alcance" required><br>
+                <input type="text" name="utensilio_quebrado" placeholder="quebrado" required><br>
+                <input type="number" name="utensilio_dur_max" placeholder="durabilidade" required><br>
+                <input type="text" name="utensilio_ataques" placeholder="ataques" required><br>
+            </section>
+
+            <!-- Sessão 3: Estilo -->
+            <section>
+                <h3>Estilo</h3>
+                <p>ligeiro</p>
+                <input type="number" name="ligeiro" placeholder="ligeiro" min="1" max='3' required><br>
+                <p>poderoso</p>
+                <input type="number" name="poderoso" placeholder="poderoso" min="1" max='3' required><br>
+                <p>preciso</p>
+                <input type="number" name="preciso" placeholder="preciso" min="1" max='3' required><br>
+                <p>sagaz</p>
+                <input type="number" name="sagaz" placeholder="sagaz" min="1" max='3' required><br>
+            </section>
+
+            <!-- Sessão 4: Habilidades -->
+            <section>
+                <h3>Habilidade</h3>
+                {% for hab in ['agarrar','atirar','curar','golpear','armazenar','atravessar','estudar','manufaturar','assegurar','chamar','exibir','procurar'] %}
+                    <p>{{ hab }}</p>
+                    <input type="number" name="{{ hab }}" placeholder="{{ hab }}" min="1" max="3" required><br>
+                {% endfor %}
+            </section>
+
+            <!-- Sessão 5: Traços -->
+            <section>
+                {% for t in range(1,4) %}
+                    <div class="traco">
+                        <h2>Traço {{ t }}:</h2>
+                        <label>Nome:</label><br>
+                        <input type="text" name="nome_traco{{ t }}" required><br>
+                        <label>Custo:</label><br>
+                        <input type="text" name="custo_traco{{ t }}" required><br>
+                        <p>Descrição</p>
+                        <textarea name="descricao_traco{{ t }}" required></textarea><br>
+
+                        <p>Habilidade do traço</p>
+                        {% for hab in ['agarrar','atirar','curar','golpear','armazenar','atravessar','estudar','manufaturar','assegurar','chamar','exibir','procurar'] %}
+                            <input type="radio" id="{{ hab }}{{ t }}" name="habilidade_traco{{ t }}" value="{{ hab }}" required>
+                            <label for="{{ hab }}{{ t }}">{{ hab.capitalize() }}</label><br>
+                        {% endfor %}
+
+                        <p>Estilo</p>
+                        {% for est in ['ligeiro','poderoso','preciso','sagaz'] %}
+                            <input type="radio" id="{{ est }}{{ t }}" name="estilo_traco{{ t }}" value="{{ est }}" required>
+                            <label for="{{ est }}{{ t }}">{{ est.capitalize() }}</label><br>
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+            </section>
+
+        </div>
+    </div>
+
+    <button type="submit">Criar Feral</button>
+
+</main>
+
+<script>
+const viewport  = document.querySelector('.form-viewport');
+const container = document.getElementById('formContainer');
+const links     = document.querySelectorAll('.form-nav a');
+const sections  = container.querySelectorAll('section');
+
+function goTo(index) {
+    const w = viewport.clientWidth;
+    container.style.transform = `translateX(-${index * w}px)`;
+
+    links.forEach(l => l.classList.remove('active'));
+    links[index].classList.add('active');
+
+    sections.forEach(s => s.classList.remove('active'));
+    sections[index].classList.add('active');
+}
+
+links.forEach((link, i) => link.addEventListener('click', () => goTo(i)));
+window.addEventListener('resize', () => {
+    const activeIndex = [...links].findIndex(l => l.classList.contains('active'));
+    if (activeIndex >= 0) goTo(activeIndex);
+});
+</script>
+{% endblock %}
