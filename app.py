@@ -103,7 +103,7 @@ def dados():
 
 
 @app.route('/create/feral', methods=['GET', 'POST'])
-@login_required
+# @login_required
 def create_feral():
     condicoes_existentes = Condicao.query.all()
     if request.method == 'POST':
@@ -262,7 +262,7 @@ def create_feral():
             db.session.add(feral)
             db.session.commit()
             return redirect(url_for('fichas'))
-    return render_template('cadastro/dados_iniciais.html', condicoes=condicoes_existentes)
+    return render_template('cadastro/teste.html', condicoes=condicoes_existentes)
 
 
 @app.route('/detail/feral/<int:id_feral>')
