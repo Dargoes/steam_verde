@@ -3,6 +3,7 @@
 {% block title %}Cadastro{% endblock %}
 
 {% block links %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
 <link rel="stylesheet" href="{{ url_for('static', filename='css/create_feral.css') }}">
 {% endblock %}
 
@@ -11,45 +12,32 @@
     <h1>Cadastro de Personagem</h1>
 
     <nav class="form-nav">
-        <a data-target="0">Estilo</a>
+        <a data-target="0" class="active">Estilo</a>
         <a data-target="1">Habilidades</a>
         <a data-target="2">Traços</a>
         <a data-target="3">Utensílios</a>
-        <a data-target="4" class="active">Informações</a>
+        <a data-target="4">Informações</a>
     </nav>
 
     <div class="form-viewport">
-        <form action="" method="post" class="form-container" id="formContainer">
+        <form action="{{ url_for('create_feral') }}" method="post" class="form-container" id="formContainer">
             <!-- Sessão 0: Estilo -->
             <section>
                 <div class="stats">
                     <h3>1. Escolha o seu Estilo</h3>
-                    <div>
-                        <p>LIGEIRO</p>
-                        <input type="number" min="1" required>
-                    </div>
-    
-                    <div>
-                        <p>PODEROSO</p>
-                        <input type="number" min="1" required>
-                    </div>
-    
-                    <div>
-                        <p>PRECISO</p> 
-                        <input type="number" min="1" required>
-                    </div>
-    
-                    <div>
-                        <p>SAGAZ </p>
-                        <input type="number" min="1" required>
-                    </div>
+                    {% for estilo in ['LIGEIRO','PODEROSO','PRECISO','SAGAZ'] %}
+                        <div>
+                            <p>{{ estilo }}</p>
+                            <input type="number" name="{{ hab }}" min="1" required>
+                        </div>
+                    {% endfor %}
                 </div>
             </section>
 
             <!-- Sessão 1: Habilidades -->
             <section>
-                <h3>2. Escolha sua Habilidade</h3>
                 <div class="habilidades">
+                    <h3>2. Escolha sua Habilidade</h3>
                     {% for hab in ['AGARRAR','ATIRAR','CURAR','GOLPEAR','ARMAZENAR','ATRAVESSAR','ESTUDAR','MANUFATURAR','ASSEGURAR','CHAMAR','EXIBIR','PROCURAR'] %}
                         <div>
                             <p>{{ hab }}</p>
@@ -98,29 +86,29 @@
 
             <!-- Sessão 4: Informações -->
             <section class="active">
-                <label>Nome:</label><br>
-                <input type="text" name="nome" required><br>
-                <label>Titulo do feral:</label><br>
-                <input type="text" name="titulo" required><br>
-                <label>Especialidade:</label><br>
-                <input type="text" name="especialidade" required><br>
-                <label>Criação:</label><br>
-                <textarea name="criacao" required></textarea><br>
-                <label>Iniciação:</label><br>
-                <textarea name="iniciacao" required></textarea><br>
-                <label>Ambição:</label><br>
-                <textarea name="ambicao" required></textarea><br>
-                <label>Conexão:</label><br>
-                <textarea name="conexao" required></textarea><br>
-                <label>Imagem:</label><br>
-                <input type="file" name="imagem" accept="image/*" required><br>
-                <label>Vigor:</label><br>
-                <input type="number" name="vigor_max" placeholder="vigor_max" min="1" max='100' required><br>
+                <div class="info">
+                    <label>Nome:</label>
+                    <input type="text" name="nome" required>
+                    <label>Titulo do feral:</label>
+                    <input type="text" name="titulo" required>
+                    <label>Especialidade:</label>
+                    <input type="text" name="especialidade" required>
+                    <label>Criação:</label>
+                    <textarea name="criacao" required></textarea>
+                    <label>Iniciação:</label>
+                    <textarea name="iniciacao" required></textarea>
+                    <label>Ambição:</label>
+                    <textarea name="ambicao" required></textarea>
+                    <label>Conexão:</label>
+                    <textarea name="conexao" required></textarea>
+                    <label>Imagem:</label>
+                    <input type="file" name="imagem" accept="image/*" required>
+                    <button type="submit">Criar Feral</button>
+                </div>
             </section>
         </form>
     </div>
 
-    <button type="submit">Criar Feral</button>
 
 </main>
 
